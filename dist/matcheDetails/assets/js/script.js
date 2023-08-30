@@ -1,5 +1,10 @@
 import focusedTeam from './dom.js';
 
+const home = document.querySelector('#homeLogo');
+const away = document.querySelector('#awayLogo');
+const matchDate = document.querySelector('#matchDate');
+const hour = document.querySelector('#hour');
+
 const currentTeam = focusedTeam[0];
 let baseurl = 'https://api.football-data.org/v4/';
 const divisions = ['PL', 'PD', 'SA', 'BL1', 'FL1'];
@@ -43,9 +48,7 @@ const options = {
   method: 'GET',
   headers: {
     'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
-    'Access-Control-Allow-Origin': 'http://localhost:8080',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+    'Access-Control-Allow-Origin': '*',
   },
 };
 
@@ -158,11 +161,24 @@ async function fetchMatch(id) {
     now +
     '&dateTo=' +
     nextWeek();
-  console.log(matchurl);
   fetchTeams(matchurl).then((response) => {
-    console.log(response.matches[0]);
-    console.log();
+    const match = response.matches[0];
+    let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
+    let date = new Date(match.utcDate);
+    let playHour = date.toTimeString().split(' ')[0];
+
+    home.src = match.homeTeam.crest;
+    away.src = match.awayTeam.crest;
+    let formatOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+
+    matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
+    hour.innerHTML = playHour;
   });
 }
 
-fetchMatch(currentTeam['Real Madrid'].id);
+fetchMatch(currentTeam['Man City'].id);
