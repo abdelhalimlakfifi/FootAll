@@ -1,5 +1,8 @@
 import focusedTeam from './dom.js';
 
+const home = document.querySelector('#homeLogo');
+const away = document.querySelector('#awayLogo');
+
 const currentTeam = focusedTeam[0];
 let baseurl = 'https://api.football-data.org/v4/';
 const divisions = ['PL', 'PD', 'SA', 'BL1', 'FL1'];
@@ -43,9 +46,7 @@ const options = {
   method: 'GET',
   headers: {
     'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
-    'Access-Control-Allow-Origin': 'http://localhost:8080',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+    'Access-Control-Allow-Origin': '*',
   },
 };
 
@@ -160,9 +161,10 @@ async function fetchMatch(id) {
     nextWeek();
   console.log(matchurl);
   fetchTeams(matchurl).then((response) => {
-    console.log(response.matches[0]);
-    console.log();
+    const match = response.matches[0];
+    home.src = match.homeTeam.crest;
+    away.src = match.awayTeam.crest;
   });
 }
 
-fetchMatch(currentTeam['Real Madrid'].id);
+fetchMatch(currentTeam['Bayern'].id);
