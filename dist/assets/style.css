@@ -1085,6 +1085,10 @@ video {
   text-indent: 0.25rem;
 }
 
+.indent-4{
+  text-indent: 1rem;
+}
+
 .font-rubik{
   font-family: Rubik, sans-serif;
 }
@@ -1121,6 +1125,11 @@ video {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .font-\[500\]{
