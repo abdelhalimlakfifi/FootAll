@@ -680,6 +680,14 @@ video {
   margin-top: 2rem;
 }
 
+.-ml-52{
+  margin-left: -13rem;
+}
+
+.-ml-48{
+  margin-left: -12rem;
+}
+
 .block{
   display: block;
 }
