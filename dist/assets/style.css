@@ -868,6 +868,10 @@ video {
   width: max-content;
 }
 
+.w-\[150px\]{
+  width: 150px;
+}
+
 .max-w-7xl{
   max-width: 80rem;
 }
