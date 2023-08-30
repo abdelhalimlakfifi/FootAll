@@ -3,6 +3,7 @@ import focusedTeam from './dom.js';
 const home = document.querySelector('#homeLogo');
 const away = document.querySelector('#awayLogo');
 const matchDate = document.querySelector('#matchDate');
+const hour = document.querySelector('#hour');
 
 const currentTeam = focusedTeam[0];
 let baseurl = 'https://api.football-data.org/v4/';
@@ -163,10 +164,9 @@ async function fetchMatch(id) {
   fetchTeams(matchurl).then((response) => {
     const match = response.matches[0];
     let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
+    let date = new Date(match.utcDate);
+    let playHour = date.toTimeString().split(' ')[0];
 
-    /* fetchTeams(lastUrl).then((result) => {
-      console.log(result);
-    }); */
     home.src = match.homeTeam.crest;
     away.src = match.awayTeam.crest;
     let formatOptions = {
@@ -175,14 +175,10 @@ async function fetchMatch(id) {
       month: 'long',
       day: 'numeric',
     };
-    matchDate.innerHTML = new Date(match.utcDate).toLocaleDateString(
-      'en-US',
-      formatOptions
-    );
-    console.log(new Date(match.utcDate).toDateString('en-US', formatOptions));
+
+    matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
+    hour.innerHTML = playHour;
   });
 }
 
-fetchMatch(currentTeam['Man United'].id);
-
-console.log(new Date().toDateString('en-'));
+fetchMatch(currentTeam['Man City'].id);
