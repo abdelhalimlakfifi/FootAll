@@ -2,6 +2,7 @@ import focusedTeam from './dom.js';
 
 const home = document.querySelector('#homeLogo');
 const away = document.querySelector('#awayLogo');
+const matchDate = document.querySelector('#matchDate');
 
 const currentTeam = focusedTeam[0];
 let baseurl = 'https://api.football-data.org/v4/';
@@ -159,12 +160,29 @@ async function fetchMatch(id) {
     now +
     '&dateTo=' +
     nextWeek();
-  console.log(matchurl);
   fetchTeams(matchurl).then((response) => {
     const match = response.matches[0];
+    let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
+
+    /* fetchTeams(lastUrl).then((result) => {
+      console.log(result);
+    }); */
     home.src = match.homeTeam.crest;
     away.src = match.awayTeam.crest;
+    let formatOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    matchDate.innerHTML = new Date(match.utcDate).toLocaleDateString(
+      'en-US',
+      formatOptions
+    );
+    console.log(new Date(match.utcDate).toDateString('en-US', formatOptions));
   });
 }
 
-fetchMatch(currentTeam['Bayern'].id);
+fetchMatch(currentTeam['Man United'].id);
+
+console.log(new Date().toDateString('en-'));
