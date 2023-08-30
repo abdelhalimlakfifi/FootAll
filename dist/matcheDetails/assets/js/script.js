@@ -152,7 +152,7 @@ const teams = {};
 });
  */
 
-async function fetchMatch(id) {
+function fetchMatch(id) {
   let matchurl =
     baseurl +
     'teams/' +
@@ -161,24 +161,31 @@ async function fetchMatch(id) {
     now +
     '&dateTo=' +
     nextWeek();
-  fetchTeams(matchurl).then((response) => {
-    const match = response.matches[0];
-    let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
-    let date = new Date(match.utcDate);
-    let playHour = date.toTimeString().split(' ')[0];
+  fetchTeams(matchurl)
+    .then((response) => {
+      const match = response.matches[0];
+      let date = new Date(match.utcDate);
+      let playHour = date.toTimeString().split(' ')[0];
 
-    home.src = match.homeTeam.crest;
-    away.src = match.awayTeam.crest;
-    let formatOptions = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    };
-
-    matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
-    hour.innerHTML = playHour;
-  });
+      home.src = match.homeTeam.crest;
+      away.src = match.awayTeam.crest;
+      let formatOptions = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+      matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
+      hour.innerHTML = playHour;
+      let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
+      return lastUrl;
+    })
+    .then((response1) => {
+      console.log(response1);
+      fetchTeams(response1).then((games) => {
+        console.log(games);
+      });
+    });
 }
 
 fetchMatch(currentTeam['Man City'].id);
