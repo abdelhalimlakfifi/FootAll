@@ -33,34 +33,37 @@
 </head>
 <!-- npx tailwindcss -i ./src/input.css -o ./dist/assets/style.css --watch -->
 
-<body class="w-11/12 bg-gray-200 flex justify-center flex-col ml-32">
-    <header class="flex justify-center w-11/12a lign-middle my-4 w-full">
+<body class="w-11/12 relative bg-gray-200 flex justify-center flex-col ml-32">
+    <header class="flex justify-center lign-middle my-4 w-full">
         <!-- Nav -->
-        <nav class="-ml-48 relative px-4 py-4 flex justify-center items-center w-full">
-            <form class="w-2/5">
-                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
+        <div
+            class="flex justify-center overflow-hidden w-full">
+            <div class="w-full">
+                <div class="w-full max-w-xl mx-auto">
+                    <form>
+                        <div class="flex justify-between overflow-hidden rounded-md bg-white shadow shadow-black/20">
+                            <input type="text" class="block w-full flex-1 py-2 px-3 focus:outline-none" id="default-search"
+                                placeholder="Start Typing..." />
+                            <span
+                                class="m-1 inline-flex cursor-pointer items-center rounded-md bg-[#5D1020] px-2 py-2 hover:bg-[#8a122a]">
+                                <svg class="text-white" width="32" height="32" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M21.07 16.83L19 14.71a3.08 3.08 0 0 0-3.4-.57l-.9-.9a7 7 0 1 0-1.41 1.41l.89.89a3 3 0 0 0 .53 3.46l2.12 2.12a3 3 0 0 0 4.24 0a3 3 0 0 0 0-4.29Zm-8.48-4.24a5 5 0 1 1 0-7.08a5 5 0 0 1 0 7.08Zm7.07 7.07a1 1 0 0 1-1.42 0l-2.12-2.12a1 1 0 0 1 0-1.42a1 1 0 0 1 1.42 0l2.12 2.12a1 1 0 0 1 0 1.42Z" />
+                                    </svg>
+                            </span>
+                        </div>
+                    </form>
+                    <div class="absolute mt-2 w-full rounded-md bg-white  max-w-xl hidden transition duration-150 ease-in-out" id="suggestion">
+
+                        <div class="cursor-pointer py-2 px-3 hover:bg-slate-100">
+                            <p class="text-sm font-medium text-gray-600">Button Ripple Effect</p>
+                            
+                        </div>
                     </div>
-                    <input type="search" id="default-search"
-                        class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                        placeholder="Search Mockups, Logos..." required>
-                    <button type="submit"
-                        class="text-white absolute right-2.5 bottom-2.5 bg-[#560617] hover:bg-[#871F35] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2">
-                        <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </button>
                 </div>
-            </form>
-        </nav>
+            </div>
+        </div>
+
     </header>
     <main class="flex flex-col">
         <section class="flex overflow-hidden">
@@ -815,6 +818,9 @@
             like.classList.toggle('fill-gray-400');
         });
     </script>
+
+
+    <script src="./assets/js/index.js"></script>
 </body>
 
 </html>
