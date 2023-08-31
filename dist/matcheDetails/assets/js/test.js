@@ -1,17 +1,35 @@
-async function fetchAll() {
-  const options = {
-    method: 'GET',
-  };
-  const request = await fetch(
-    'http://127.0.0.1:3000/teams/65/matches/?dateFrom=2023-08-31&dateTo=2023-09-07',
-    options
-  ).then((response) => {
-    return response.json();
-  });
+const divisions = ['PL', 'PD', 'SA', 'BL1', 'FL1'];
+const urlTeams = [];
+let baseurl = 'https://api.football-data.org/v4';
+divisions.forEach((division) => {
+  let newurl = baseurl + '/competitions/' + division + '/teams';
+  urlTeams.push(newurl);
+});
 
-  return request;
+const options = {
+  method: 'GET',
+  headers: {
+    'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
+    'Access-Control-Allow-Origin': '*',
+  },
+};
+
+async function fetchTeams(url) {
+  const result = await fetch(url, options);
+  const response = result.json();
+
+  return response;
 }
 
-fetchAll().then((response) => {
-  console.log(JSON.parse(response));
+const teams = [];
+
+urlTeams.forEach((url) => {
+  fetchTeams(url).then((response) => {
+    response.teams.forEach((team) => {
+      teams.push(team.shortName);
+    });
+    if (teams.length > 80) {
+      console.log(teams);
+    }
+  });
 });
