@@ -62,6 +62,7 @@ const nextWeek = () => {
 const away = document.querySelector('#awayLogo'); */
 
 const now = new Date().toISOString().split('T')[0];
+
 function getMatch(str) {
   const matches = [];
   const closeMatches = [];
@@ -181,10 +182,39 @@ function fetchMatch(id) {
       return lastUrl;
     })
     .then((response1) => {
+      console.log(response1);
       fetchTeams(response1).then((games) => {
-        console.log(games.matches);
+        console.log(games);
       });
     });
 }
 
-fetchMatch(currentTeam.Barça.id);
+// fetchMatch(currentTeam['Man City'].id);
+
+[1, 2, 3].forEach((match) => {
+  let matchContainer = document.createElement('div');
+  matchContainer.className = 'matchContainer';
+  console.log(document.getElementById('matches_container').innerHTML);
+  matchContainer.innerHTML = `
+                    <p class="text-center font-bold pt-4">
+                         Tuesday, August 29, 2023 at 19:45
+                    </p>
+                    <div class="flex justify-between pb-7 mx-20">
+                         <div class="flex gap-8">
+                              <p class="flex items-center font-rubik font-bold">Ny Yorks</p>
+                              <img src="./teamLogo/team_1.png" class="w-20 h-fit" alt="" />
+                         </div>
+                         <div class="flex">
+                              <p class="mt-5 font-bold text-3xl tracking-[1.25rem]">1-3</p>
+                         </div>
+     
+                         <div class="flex gap-8">
+                              <img src="./teamLogo/team_2.png" class="w-20 h-fit" alt="" />
+                              <p class="flex items-center font-rubik font-bold">Ny Yorks</p>
+                         </div>
+                    </div>
+     `;
+
+  console.log(matchContainer);
+  document.getElementById('matches_container').appendChild(matchContainer);
+});
