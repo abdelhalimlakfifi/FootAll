@@ -181,11 +181,10 @@ function fetchMatch(id) {
       return lastUrl;
     })
     .then((response1) => {
-      console.log(response1);
       fetchTeams(response1).then((games) => {
-        console.log(games);
+        console.log(games.matches);
       });
     });
 }
 
-fetchMatch(currentTeam['Man City'].id);
+fetchMatch(currentTeam.Barça.id);
