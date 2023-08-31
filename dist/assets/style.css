@@ -662,14 +662,18 @@ video {
   margin-bottom: 1rem;
 }
 
+.my-6{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .my-8{
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.my-6{
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+.-mb-px{
+  margin-bottom: -1px;
 }
 
 .-ml-48{
@@ -740,16 +744,32 @@ video {
   margin-top: 1.25rem;
 }
 
-.mt-6{
-  margin-top: 1.5rem;
-}
-
 .mt-8{
   margin-top: 2rem;
 }
 
+.ml-28{
+  margin-left: 7rem;
+}
+
+.ml-\[60\%\]{
+  margin-left: 60%;
+}
+
+.ml-\[70\%\]{
+  margin-left: 70%;
+}
+
+.ml-\[40\%\]{
+  margin-left: 40%;
+}
+
 .block{
   display: block;
+}
+
+.inline-block{
+  display: inline-block;
 }
 
 .flex{
@@ -758,6 +778,10 @@ video {
 
 .table{
   display: table;
+}
+
+.hidden{
+  display: none;
 }
 
 .h-10{
@@ -820,6 +844,10 @@ video {
   height: 2em;
 }
 
+.h-\[70vh\]{
+  height: 70vh;
+}
+
 .h-fit{
   height: -moz-fit-content;
   height: fit-content;
@@ -827,18 +855,6 @@ video {
 
 .h-full{
   height: 100%;
-}
-
-.h-screen{
-  height: 100vh;
-}
-
-.h-\[50vh\]{
-  height: 50vh;
-}
-
-.h-\[70vh\]{
-  height: 70vh;
 }
 
 .w-1\/2{
@@ -931,6 +947,26 @@ video {
   width: max-content;
 }
 
+.w-48{
+  width: 12rem;
+}
+
+.w-52{
+  width: 13rem;
+}
+
+.w-\[17vw\]{
+  width: 17vw;
+}
+
+.w-2\/4{
+  width: 50%;
+}
+
+.max-w-2xl{
+  max-width: 42rem;
+}
+
 .max-w-7xl{
   max-width: 80rem;
 }
@@ -959,12 +995,20 @@ video {
   align-items: center;
 }
 
+.justify-start{
+  justify-content: flex-start;
+}
+
 .justify-center{
   justify-content: center;
 }
 
 .justify-between{
   justify-content: space-between;
+}
+
+.justify-around{
+  justify-content: space-around;
 }
 
 .justify-evenly{
@@ -979,16 +1023,24 @@ video {
   gap: 2rem;
 }
 
+.gap-1{
+  gap: 0.25rem;
+}
+
+.gap-3{
+  gap: 0.75rem;
+}
+
+.gap-5{
+  gap: 1.25rem;
+}
+
 .overflow-auto{
   overflow: auto;
 }
 
 .overflow-hidden{
   overflow: hidden;
-}
-
-.overflow-x-scroll{
-  overflow-x: scroll;
 }
 
 .overflow-y-scroll{
@@ -1028,12 +1080,21 @@ video {
   border-bottom-left-radius: 0.25rem;
 }
 
+.rounded-t-lg{
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
 .border{
   border-width: 1px;
 }
 
 .border-b{
   border-bottom-width: 1px;
+}
+
+.border-b-2{
+  border-bottom-width: 2px;
 }
 
 .border-gray-200{
@@ -1044,6 +1105,10 @@ video {
 .border-gray-300{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-transparent{
+  border-color: transparent;
 }
 
 .bg-\[\#096A00\]{
@@ -1305,6 +1370,11 @@ video {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+.text-gray-800{
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+
 .text-gray-900{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -1330,6 +1400,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-\[\#560617\]{
+  --tw-text-opacity: 1;
+  color: rgb(86 6 23 / var(--tw-text-opacity));
+}
+
 .opacity-50{
   opacity: 0.5;
 }
@@ -1352,9 +1427,19 @@ video {
   word-spacing: 45px;
 }
 
+.hover\:border-gray-300:hover{
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
 .hover\:bg-\[\#871F35\]:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(135 31 53 / var(--tw-bg-opacity));
+}
+
+.hover\:text-gray-600:hover{
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover{
@@ -1373,6 +1458,11 @@ video {
 }
 
 @media (prefers-color-scheme: dark){
+  .dark\:border-gray-700{
+    --tw-border-opacity: 1;
+    border-color: rgb(55 65 81 / var(--tw-border-opacity));
+  }
+
   .dark\:bg-gray-800{
     --tw-bg-opacity: 1;
     background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -1382,15 +1472,21 @@ video {
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
   }
+
+  .dark\:text-white{
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:hover\:text-gray-300:hover{
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+  }
 }
 
 @media (min-width: 640px){
   .sm\:mt-0{
     margin-top: 0px;
-  }
-
-  .sm\:text-center{
-    text-align: center;
   }
 }
 
