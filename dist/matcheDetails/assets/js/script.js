@@ -171,12 +171,12 @@ async function fetchMatch(id) {
     };
     matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
     hour.innerHTML = playHour;
-    let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
+    console.log(match);
+    let lastUrl = baseurl + 'matches/' + match.id + '/head2head/';
     fetchTeams(lastUrl).then((previous) => {
       let getprev = JSON.parse(previous);
       console.log(getprev);
       getprev.matches.forEach((match) => {
-        console.log(match);
         let date = new Date(match.utcDate);
         let playHour = date.toLocaleDateString('en-US', formatOptions);
         let matchContainer = document.createElement('div');
@@ -209,4 +209,4 @@ async function fetchMatch(id) {
   });
 }
 
-fetchMatch(currentTeam['Man United'].id);
+fetchMatch(currentTeam.Fiorentina.id);
