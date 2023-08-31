@@ -536,6 +536,40 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.container{
+  width: 100%;
+}
+
+@media (min-width: 640px){
+  .container{
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px){
+  .container{
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px){
+  .container{
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px){
+  .container{
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px){
+  .container{
+    max-width: 1536px;
+  }
+}
+
 .sr-only{
   position: absolute;
   width: 1px;
@@ -591,10 +625,6 @@ video {
 
 .z-\[1\]{
   z-index: 1;
-}
-
-.m-4{
-  margin: 1rem;
 }
 
 .mx-10{
@@ -769,6 +799,10 @@ video {
   height: 24rem;
 }
 
+.h-\[150px\]{
+  height: 150px;
+}
+
 .h-\[18\2c 5rem\]{
   height: 18,5rem;
 }
@@ -788,10 +822,6 @@ video {
 
 .h-full{
   height: 100%;
-}
-
-.h-\[150px\]{
-  height: 150px;
 }
 
 .w-1\/2{
@@ -890,6 +920,10 @@ video {
 
 .max-w-screen-xl{
   max-width: 1280px;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
 
 .flex-col{
@@ -1049,6 +1083,14 @@ video {
 
 .bg-contain{
   background-size: contain;
+}
+
+.fill-gray-400{
+  fill: #9ca3af;
+}
+
+.fill-red-600{
+  fill: #dc2626;
 }
 
 .object-contain{
