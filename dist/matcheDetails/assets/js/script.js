@@ -44,13 +44,6 @@ var closestMatch = function (target, array, showOccurrences) {
   }
   return showOccurrences ? found : found[0];
 };
-const options = {
-  method: 'GET',
-  headers: {
-    'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
-    'Access-Control-Allow-Origin': '*',
-  },
-};
 
 const nextWeek = () => {
   const now = new Date();
@@ -58,10 +51,8 @@ const nextWeek = () => {
   return now.toISOString().split('T')[0];
 };
 
-/* const home = document.querySelector('#homeLogo');
-const away = document.querySelector('#awayLogo'); */
-
 const now = new Date().toISOString().split('T')[0];
+
 function getMatch(str) {
   const matches = [];
   const closeMatches = [];
@@ -99,13 +90,16 @@ function getMatch(str) {
 }
 
 async function fetchTeams(url) {
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
+      'Access-Control-Allow-Origin': '*',
+    },
+  };
+  const response = await fetch(url, options);
+  const result = await response.json();
+  return result;
 }
 
 class Team {
@@ -163,7 +157,6 @@ async function fetchMatch(id) {
     nextWeek();
   fetchTeams(matchurl).then((response) => {
     const match = response.matches[0];
-    let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
     let date = new Date(match.utcDate);
     let playHour = date.toTimeString().split(' ')[0];
 
@@ -175,9 +168,39 @@ async function fetchMatch(id) {
       month: 'long',
       day: 'numeric',
     };
-
     matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
     hour.innerHTML = playHour;
+    let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
+    fetchTeams(lastUrl).then((previous) => {
+      previous.matches.forEach((match) => {
+        console.log(match);
+        let matchContainer = document.createElement('div');
+        matchContainer.className = 'matchContainer';
+        matchContainer.innerHTML = `
+                    <p class="text-center font-bold pt-4">
+                         Tuesday, August 29, 2023 at 19:45
+                    </p>
+                    <div class="flex justify-between pb-7 mx-20">
+                         <div class="flex gap-8">
+                              <p class="flex items-center font-rubik font-bold">Ny Yorks</p>
+                              <img src="./teamLogo/team_1.png" class="w-20 h-fit" alt="" />
+                         </div>
+                         <div class="flex">
+                              <p class="mt-5 font-bold text-3xl tracking-[1.25rem]">1-3</p>
+                         </div>
+     
+                         <div class="flex gap-8">
+                              <img src="./teamLogo/team_2.png" class="w-20 h-fit" alt="" />
+                              <p class="flex items-center font-rubik font-bold">Ny Yorks</p>
+                         </div>
+                    </div>
+     `;
+
+        document
+          .getElementById('matches_container')
+          .appendChild(matchContainer);
+      });
+    });
   });
 }
 
