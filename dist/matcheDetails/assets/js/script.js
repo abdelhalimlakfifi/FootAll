@@ -44,22 +44,12 @@ var closestMatch = function (target, array, showOccurrences) {
   }
   return showOccurrences ? found : found[0];
 };
-const options = {
-  method: 'GET',
-  headers: {
-    'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
-    'Access-Control-Allow-Origin': '*',
-  },
-};
 
 const nextWeek = () => {
   const now = new Date();
   now.setDate(now.getDate() + 7);
   return now.toISOString().split('T')[0];
 };
-
-/* const home = document.querySelector('#homeLogo');
-const away = document.querySelector('#awayLogo'); */
 
 const now = new Date().toISOString().split('T')[0];
 
@@ -100,13 +90,16 @@ function getMatch(str) {
 }
 
 async function fetchTeams(url) {
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
+      'Access-Control-Allow-Origin': '*',
+    },
+  };
+  const response = await fetch(url, options);
+  const result = await response.json();
+  return result;
 }
 
 class Team {
@@ -153,7 +146,7 @@ const teams = {};
 });
  */
 
-function fetchMatch(id) {
+async function fetchMatch(id) {
   let matchurl =
     baseurl +
     'teams/' +
@@ -162,40 +155,28 @@ function fetchMatch(id) {
     now +
     '&dateTo=' +
     nextWeek();
-  fetchTeams(matchurl)
-    .then((response) => {
-      const match = response.matches[0];
-      let date = new Date(match.utcDate);
-      let playHour = date.toTimeString().split(' ')[0];
+  fetchTeams(matchurl).then((response) => {
+    const match = response.matches[0];
+    let date = new Date(match.utcDate);
+    let playHour = date.toTimeString().split(' ')[0];
 
-      home.src = match.homeTeam.crest;
-      away.src = match.awayTeam.crest;
-      let formatOptions = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      };
-      matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
-      hour.innerHTML = playHour;
-      let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
-      return lastUrl;
-    })
-    .then((response1) => {
-      console.log(response1);
-      fetchTeams(response1).then((games) => {
-        console.log(games);
-      });
-    });
-}
-
-// fetchMatch(currentTeam['Man City'].id);
-
-[1, 2, 3].forEach((match) => {
-  let matchContainer = document.createElement('div');
-  matchContainer.className = 'matchContainer';
-  console.log(document.getElementById('matches_container').innerHTML);
-  matchContainer.innerHTML = `
+    home.src = match.homeTeam.crest;
+    away.src = match.awayTeam.crest;
+    let formatOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
+    hour.innerHTML = playHour;
+    let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
+    fetchTeams(lastUrl).then((previous) => {
+      previous.matches.forEach((match) => {
+        console.log(match);
+        let matchContainer = document.createElement('div');
+        matchContainer.className = 'matchContainer';
+        matchContainer.innerHTML = `
                     <p class="text-center font-bold pt-4">
                          Tuesday, August 29, 2023 at 19:45
                     </p>
@@ -215,6 +196,12 @@ function fetchMatch(id) {
                     </div>
      `;
 
-  console.log(matchContainer);
-  document.getElementById('matches_container').appendChild(matchContainer);
-});
+        document
+          .getElementById('matches_container')
+          .appendChild(matchContainer);
+      });
+    });
+  });
+}
+
+fetchMatch(currentTeam['Man City'].id);
