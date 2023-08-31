@@ -6,7 +6,7 @@ const matchDate = document.querySelector('#matchDate');
 const hour = document.querySelector('#hour');
 
 const currentTeam = focusedTeam[0];
-let baseurl = 'https://api.football-data.org/v4/';
+let baseurl = 'http://127.0.0.1:3000/';
 const divisions = ['PL', 'PD', 'SA', 'BL1', 'FL1'];
 const urlTeams = [];
 var distance = function (a, b) {
@@ -156,7 +156,8 @@ async function fetchMatch(id) {
     '&dateTo=' +
     nextWeek();
   fetchTeams(matchurl).then((response) => {
-    const match = response.matches[0];
+    let res = JSON.parse(response);
+    const match = res.matches[0];
     let date = new Date(match.utcDate);
     let playHour = date.toTimeString().split(' ')[0];
 
@@ -172,26 +173,30 @@ async function fetchMatch(id) {
     hour.innerHTML = playHour;
     let lastUrl = baseurl + 'matches/' + match.id + '/head2head';
     fetchTeams(lastUrl).then((previous) => {
-      previous.matches.forEach((match) => {
+      let getprev = JSON.parse(previous);
+      console.log(getprev);
+      getprev.matches.forEach((match) => {
         console.log(match);
+        let date = new Date(match.utcDate);
+        let playHour = date.toLocaleDateString('en-US', formatOptions);
         let matchContainer = document.createElement('div');
         matchContainer.className = 'matchContainer';
         matchContainer.innerHTML = `
                     <p class="text-center font-bold pt-4">
-                         Tuesday, August 29, 2023 at 19:45
+                         ${playHour}
                     </p>
                     <div class="flex justify-between pb-7 mx-20">
                          <div class="flex gap-8">
-                              <p class="flex items-center font-rubik font-bold">Ny Yorks</p>
-                              <img src="./teamLogo/team_1.png" class="w-20 h-fit" alt="" />
+                              <p class="flex items-center font-rubik font-bold">${match.homeTeam.shortName}</p>
+                              <img src="${match.homeTeam.crest}" class="w-20 h-fit" alt="" />
                          </div>
                          <div class="flex">
-                              <p class="mt-5 font-bold text-3xl tracking-[1.25rem]">1-3</p>
+                              <p class="mt-5 font-bold text-3xl tracking-[1.25rem]">${match.score.fullTime.home}-${match.score.fullTime.away}</p>
                          </div>
      
                          <div class="flex gap-8">
-                              <img src="./teamLogo/team_2.png" class="w-20 h-fit" alt="" />
-                              <p class="flex items-center font-rubik font-bold">Ny Yorks</p>
+                              <img src="${match.awayTeam.crest}" class="w-20 h-fit" alt="" />
+                              <p class="flex items-center font-rubik font-bold">${match.awayTeam.shortName}</p>
                          </div>
                     </div>
      `;
@@ -204,4 +209,4 @@ async function fetchMatch(id) {
   });
 }
 
-fetchMatch(currentTeam['Man City'].id);
+fetchMatch(currentTeam['Man United'].id);
