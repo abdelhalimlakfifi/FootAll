@@ -408,4 +408,31 @@ async function fetchMatch(id) {
 
 fetchMatch(currentTeam.Fiorentina.id);
 
-console.log(getMatch('bar'));
+const searchInput = document.getElementById('default-search');
+
+searchInput.addEventListener('input', function () {
+  let suggestions = document.getElementById('suggestion');
+
+  // Teams for Test
+
+  if (searchInput.value != '' || searchInput.value == null) {
+    // filter bash nreturn tems dial recherche
+    let results = getMatch(searchInput.value);
+
+    suggestions.innerHTML = '';
+
+    results.forEach((res) => {
+      let newElemnt = document.createElement('div');
+      newElemnt.innerHTML = `
+            <div class="cursor-pointer py-2 px-3 hover:bg-slate-100">
+                <p class="text-sm font-medium text-gray-600">${res}</p>
+            </div>
+            `;
+      suggestions.appendChild(newElemnt);
+    });
+
+    suggestions.classList.remove('hidden');
+  } else {
+    suggestions.classList.add('hidden');
+  }
+});
