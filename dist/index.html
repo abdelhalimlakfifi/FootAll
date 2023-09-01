@@ -1,611 +1,896 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css"
+    />
 
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/style.css" />
     <style>
-        #scrolsLeague::-webkit-scrollbar {
-            width: 10px;
-        }
+      #scrolsLeague::-webkit-scrollbar {
+        width: 10px;
+      }
 
-        /* Track */
-        #scrolsLeague::-webkit-scrollbar-track {
-            background: #d9d9d9;
-            border-radius: 8px;
-        }
+      /* Track */
+      #scrolsLeague::-webkit-scrollbar-track {
+        background: #d9d9d9;
+        border-radius: 8px;
+      }
 
-        /* Handle */
-        #scrolsLeague::-webkit-scrollbar-thumb {
-            background: #5742A9;
-            border-radius: 10px;
-        }
+      /* Handle */
+      #scrolsLeague::-webkit-scrollbar-thumb {
+        background: #5742a9;
+        border-radius: 10px;
+      }
 
-        /* Handle on hover */
-        #scrolsLeague::-webkit-scrollbar-thumb:hover {
-            background: #5742A9;
-        }
+      /* Handle on hover */
+      #scrolsLeague::-webkit-scrollbar-thumb:hover {
+        background: #5742a9;
+      }
     </style>
-</head>
-<!-- npx tailwindcss -i ./src/input.css -o ./dist/assets/style.css --watch -->
+  </head>
+  <!-- npx tailwindcss -i ./src/input.css -o ./dist/assets/style.css --watch -->
 
-<body class="w-11/12 bg-gray-200 flex justify-center flex-col ml-32">
-    <header class="flex justify-center w-11/12a lign-middle my-4 w-full">
-        <!-- Nav -->
-        <nav class="-ml-48 relative px-4 py-4 flex justify-center items-center w-full">
-            <form class="w-2/5">
-                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </div>
-                    <input type="search" id="default-search"
-                        class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-                        placeholder="Search Mockups, Logos..." required>
-                    <button type="submit"
-                        class="text-white absolute right-2.5 bottom-2.5 bg-[#560617] hover:bg-[#871F35] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2">
-                        <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </button>
-                </div>
+  <body class="w-11/12 relative bg-gray-200 flex justify-center flex-col ml-32">
+    <header class="flex justify-center lign-middle my-4 w-full">
+      <!-- Nav -->
+      <div class="flex justify-center overflow-hidden w-full">
+        <div class="w-full">
+          <div class="w-full max-w-xl mx-auto">
+            <form>
+              <div
+                class="flex justify-between overflow-hidden rounded-md bg-white shadow shadow-black/20"
+              >
+                <input
+                  type="text"
+                  class="block w-full flex-1 py-2 px-3 focus:outline-none"
+                  id="default-search"
+                  placeholder="Start Typing..."
+                />
+                <span
+                  class="m-1 inline-flex cursor-pointer items-center rounded-md bg-[#5D1020] px-2 py-2 hover:bg-[#8a122a]"
+                >
+                  <svg
+                    class="text-white"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M21.07 16.83L19 14.71a3.08 3.08 0 0 0-3.4-.57l-.9-.9a7 7 0 1 0-1.41 1.41l.89.89a3 3 0 0 0 .53 3.46l2.12 2.12a3 3 0 0 0 4.24 0a3 3 0 0 0 0-4.29Zm-8.48-4.24a5 5 0 1 1 0-7.08a5 5 0 0 1 0 7.08Zm7.07 7.07a1 1 0 0 1-1.42 0l-2.12-2.12a1 1 0 0 1 0-1.42a1 1 0 0 1 1.42 0l2.12 2.12a1 1 0 0 1 0 1.42Z"
+                    />
+                  </svg>
+                </span>
+              </div>
             </form>
-        </nav>
+            <div
+              class="absolute mt-2 w-full rounded-md bg-white max-w-xl hidden transition duration-150 ease-in-out"
+              id="suggestion"
+            >
+              <div class="cursor-pointer py-2 px-3 hover:bg-slate-100">
+                <p class="text-sm font-medium text-gray-600">
+                  Button Ripple Effect
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
     <main class="flex flex-col">
-        <section class="flex overflow-hidden">
-            <div class="rounded-2xl h-2/4 overflow-hidden w-3/5 mr-12 flex justify-between bg-[#5d1020]">
-                <img class="object-contain h-72 mt-2" src="./assets/Poster/MNU.png">
-                <div class="flex flex-col justify-center items-center text-white">
-                    <img class="object-contain h-32 mt-4" src="./assets/Poster/PL.png">
-                    <div class="[word-spacing:45px] text-2xl ">team1 vs team2</div>
-                    <div class="[word-spacing:20px]">Sunday, 02 Septembre 2023</div>
-                    <div class="indent-1 [word-spacing:20px] font-semibold text-lg">04 : 04 : 04 : 04</div>
-                    <div class="[word-spacing:24px] text-gray-500 capitalize">Days Hours Minutes Seconds</div>
-                </div>
-                <img class="object-contain h-72 mt-2" src="./assets/Poster/ARS.png">
+      <section class="flex overflow-hidden">
+        <div
+          class="rounded-2xl h-2/4 overflow-hidden w-3/5 mr-12 flex justify-between bg-[#5d1020]"
+        >
+          <img class="object-contain h-72 mt-2" src="./assets/Poster/MNU.png" />
+          <div class="flex flex-col justify-center items-center text-white">
+            <img
+              class="object-contain h-32 mt-4"
+              src="./assets/Poster/PL.png"
+            />
+            <div class="[word-spacing:45px] text-2xl">team1 vs team2</div>
+            <div class="[word-spacing:20px]">Sunday, 02 Septembre 2023</div>
+            <div class="indent-1 [word-spacing:20px] font-semibold text-lg">
+              04 : 04 : 04 : 04
             </div>
-            <div class="bg-white rounded-2xl h-[18,5rem] overflow-hidden w-1/4 flex flex-col items-center py-3">
-                <h2 class="mt-2 text-xl font-semibold">Live Match</h2>
-                <p class="mt-2 text-green-700  text-lg">curr min</p>
-                <div class="mt-2 flex justify-between w-3/4">
-                    <img class="object-contain h-10" src="./assets/Poster/MNUL.png">
-                    <div
-                        class="w-5/12 bg-[#efeef5] text-[#6f6a88] text-center rounded-2xl overflow-hidden text-lg pt-[5px]">
-                        curr - res</div>
-                    <img class="object-contain h-10" src="./assets/Poster/ARSL.png">
-                </div>
-                <div class="mt-2 flex flex-col items-center">
-                    <div class="mt-2 w-[17vw]">
-                        <div class="flex justify-between">
-                            <p class="text-sm text-[#096A00]">40%</p>
-                            <p class="text-center font-semibold text-lg capitalize">Ball possession</p>
-                            <p class="text-sm text-[#560617]">60%</p>
-                        </div>
+            <div class="[word-spacing:24px] text-gray-500 capitalize">
+              Days Hours Minutes Seconds
+            </div>
+          </div>
+          <img class="object-contain h-72 mt-2" src="./assets/Poster/ARS.png" />
+        </div>
+        <div
+          class="bg-white rounded-2xl h-[18,5rem] overflow-hidden w-1/4 flex flex-col items-center py-3"
+        >
+          <h2 class="mt-2 text-xl font-semibold">Live Match</h2>
+          <p class="mt-2 text-green-700 text-lg">curr min</p>
+          <div class="mt-2 flex justify-between w-3/4">
+            <img class="object-contain h-10" src="./assets/Poster/MNUL.png" />
+            <div
+              class="w-5/12 bg-[#efeef5] text-[#6f6a88] text-center rounded-2xl overflow-hidden text-lg pt-[5px]"
+            >
+              curr - res
+            </div>
+            <img class="object-contain h-10" src="./assets/Poster/ARSL.png" />
+          </div>
+          <div class="mt-2 flex flex-col items-center">
+            <div class="mt-2 w-[17vw]">
+              <div class="flex justify-between">
+                <p class="text-sm text-[#096A00]">40%</p>
+                <p class="text-center font-semibold text-lg capitalize">
+                  Ball possession
+                </p>
+                <p class="text-sm text-[#560617]">60%</p>
+              </div>
 
-                        <div class="w-full flex justify-center gap-4">
-                            <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#096A00] h-2.5 rounded-full ml-[60%]" style="width: 40%"></div>
-                            </div>
-                            <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#560617] h-2.5 rounded-full" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2 w-[17vw]">
-                        <div class="flex justify-between">
-                            <p class="text-sm text-[#096A00]">6</p>
-                            <p class="text-center font-semibold text-lg capitalize">Shots on target</p>
-                            <p class="text-sm text-[#560617]">13</p>
-                        </div>
+              <div class="w-full flex justify-center gap-4">
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#096A00] h-2.5 rounded-full ml-[60%]"
+                    style="width: 40%"
+                  ></div>
+                </div>
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#560617] h-2.5 rounded-full"
+                    style="width: 60%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2 w-[17vw]">
+              <div class="flex justify-between">
+                <p class="text-sm text-[#096A00]">6</p>
+                <p class="text-center font-semibold text-lg capitalize">
+                  Shots on target
+                </p>
+                <p class="text-sm text-[#560617]">13</p>
+              </div>
 
-                        <div class="w-full flex justify-center gap-4">
-                            <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#096A00] h-2.5 rounded-full ml-[70%]" style="width: 30%"></div>
-                            </div>
-                            <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#560617] h-2.5 rounded-full" style="width: 70%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2 w-[17vw]">
-                        <div class="flex justify-between">
-                            <p class="text-sm text-[#096A00]">4</p>
-                            <p class="text-center font-semibold text-lg capitalize">Offsides</p>
-                            <p class="text-sm text-[#560617]">6</p>
-                        </div>
+              <div class="w-full flex justify-center gap-4">
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#096A00] h-2.5 rounded-full ml-[70%]"
+                    style="width: 30%"
+                  ></div>
+                </div>
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#560617] h-2.5 rounded-full"
+                    style="width: 70%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2 w-[17vw]">
+              <div class="flex justify-between">
+                <p class="text-sm text-[#096A00]">4</p>
+                <p class="text-center font-semibold text-lg capitalize">
+                  Offsides
+                </p>
+                <p class="text-sm text-[#560617]">6</p>
+              </div>
 
-                        <div class="w-full flex justify-center gap-4">
-                            <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#096A00] h-2.5 rounded-full ml-[60%]" style="width: 40%"></div>
-                            </div>
-                            <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#560617] h-2.5 rounded-full" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2 w-[17vw]">
-                        <div class="flex justify-between">
-                            <p class="text-sm text-[#096A00]">3</p>
-                            <p class="text-center font-semibold text-lg capitalize">Goalkeeper saves</p>
-                            <p class="text-sm text-[#560617]">2</p>
-                        </div>
+              <div class="w-full flex justify-center gap-4">
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#096A00] h-2.5 rounded-full ml-[60%]"
+                    style="width: 40%"
+                  ></div>
+                </div>
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#560617] h-2.5 rounded-full"
+                    style="width: 60%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2 w-[17vw]">
+              <div class="flex justify-between">
+                <p class="text-sm text-[#096A00]">3</p>
+                <p class="text-center font-semibold text-lg capitalize">
+                  Goalkeeper saves
+                </p>
+                <p class="text-sm text-[#560617]">2</p>
+              </div>
 
-                        <div class="w-full flex justify-center gap-4">
-                            <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#096A00] h-2.5 rounded-full ml-[40%]" style="width: 60%"></div>
-                            </div>
-                            <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#560617] h-2.5 rounded-full" style="width: 40%"></div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="w-full flex justify-center gap-4">
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#096A00] h-2.5 rounded-full ml-[40%]"
+                    style="width: 60%"
+                  ></div>
                 </div>
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#560617] h-2.5 rounded-full"
+                    style="width: 40%"
+                  ></div>
+                </div>
+              </div>
             </div>
-        </section>
-        <section class=" flex justify-evenly items-center bg-white h-28 mt-8 rounded-xl w-[88.5%]">
-            <img class="h-20 object-contain" src="./assets/Poster/L1.webp">
-            <img class="h-20 object-contain" src="./assets/Poster/SA.png">
-            <img class="h-20 object-contain" src="./assets/Poster/PL.png">
-            <img class="h-20 object-contain" src="./assets/Poster/LL.png">
-            <img class="h-20 object-contain" src="./assets/Poster/BL.png">
-        </section>
-        <section class="flex flex-col mt-8 rounded-xl w-[88.5%]">
-            <div id="matches" class="bg-white h-16 rounded-lg my-2">
+          </div>
+        </div>
+      </section>
+      <section
+        class="flex justify-evenly items-center bg-white h-28 mt-8 rounded-xl w-[88.5%]"
+      >
+        <img class="h-20 object-contain" src="./assets/Poster/L1.webp" />
+        <img class="h-20 object-contain" src="./assets/Poster/SA.png" />
+        <img class="h-20 object-contain" src="./assets/Poster/PL.png" />
+        <img class="h-20 object-contain" src="./assets/Poster/LL.png" />
+        <img class="h-20 object-contain" src="./assets/Poster/BL.png" />
+      </section>
+      <section class="flex flex-col mt-8 rounded-xl w-[88.5%]">
+        <div id="matches" class="bg-white h-16 rounded-lg my-2"></div>
+      </section>
+      <section class="flex flex-col mt-8 rounded-xl w-[88.5%] bg-white">
+        <div class="px-16 py-8 flex flex-col items-start">
+          <div class="flex items-center w-36 text-2xl font-semibold py-8">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 576 512"
+            >
+              <path
+                d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"
+                fill="yellow"
+              />
+            </svg>
+            Standings
+          </div>
+          <!-- Import tabs code -->
+          <div class="w-full">
+            <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
+              <ul
+                class="flex justify-evenly -mb-px"
+                id="myTab"
+                data-tabs-toggle="#myTabContent"
+                role="tablist"
+              >
+                <li class="mr-2" role="presentation">
+                  <button
+                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                    id="L1-tab"
+                    data-tabs-target="#L1"
+                    type="button"
+                    role="tab"
+                    aria-controls="L1"
+                    aria-selected="false"
+                  >
+                    <div class="flex items-center w-max text-xl font-medium">
+                      <img
+                        src="./assets/Poster/L1.webp"
+                        class="object-contain h-10"
+                      />
+                      Ligue 1
+                    </div>
+                  </button>
+                </li>
+                <li class="mr-2" role="presentation">
+                  <button
+                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active"
+                    id="SA-tab"
+                    data-tabs-target="#SA"
+                    type="button"
+                    role="tab"
+                    aria-controls="SA"
+                    aria-selected="true"
+                  >
+                    <div class="flex items-center w-max text-xl font-medium">
+                      <img
+                        src="./assets/Poster/SA.png"
+                        class="object-contain h-10"
+                      />
+                      Serie A
+                    </div>
+                  </button>
+                </li>
+                <li class="mr-2" role="presentation">
+                  <button
+                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                    id="PL-tab"
+                    data-tabs-target="#PL"
+                    type="button"
+                    role="tab"
+                    aria-controls="PL"
+                    aria-selected="false"
+                  >
+                    <div class="flex items-center w-max text-xl font-medium">
+                      <img
+                        src="./assets/Poster/PL.png"
+                        class="object-contain h-10"
+                      />
+                      Premier League
+                    </div>
+                  </button>
+                </li>
+                <li role="presentation">
+                  <button
+                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                    id="LL-tab"
+                    data-tabs-target="#LL"
+                    type="button"
+                    role="tab"
+                    aria-controls="LL"
+                    aria-selected="false"
+                  >
+                    <div class="flex items-center w-max text-xl font-medium">
+                      <img
+                        src="./assets/Poster/LL.png"
+                        class="object-contain h-10"
+                      />
+                      La Liga
+                    </div>
+                  </button>
+                </li>
+                <li role="presentation">
+                  <button
+                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                    id="BL-tab"
+                    data-tabs-target="#BL"
+                    type="button"
+                    role="tab"
+                    aria-controls="BL"
+                    aria-selected="false"
+                  >
+                    <div class="flex items-center w-max text-xl font-medium">
+                      <img
+                        src="./assets/Poster/BL.png"
+                        class="object-contain h-10"
+                      />
+                      Bundesliga
+                    </div>
+                  </button>
+                </li>
+              </ul>
             </div>
-        </section>
-        <section class="flex flex-col mt-8 rounded-xl w-[88.5%] bg-white">
-            <div class="px-16 py-8 flex flex-col items-start">
-                <div class="flex items-center w-36 text-2xl font-semibold py-8">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                        <path
-                            d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"
-                            fill="yellow" />
-                    </svg> Standings
-                </div>
-                <!-- Import tabs code -->
-                <div class="w-full">
-                    <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
-                        <ul class="flex justify-evenly -mb-px" id="myTab" data-tabs-toggle="#myTabContent"
-                            role="tablist">
-                            <li class="mr-2" role="presentation">
-                                <button
-                                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
-                                    id="L1-tab" data-tabs-target="#L1" type="button" role="tab" aria-controls="L1"
-                                    aria-selected="false">
-                                    <div class="flex items-center w-max text-xl font-medium">
-                                        <img src="./assets/Poster/L1.webp" class="object-contain h-10"> Ligue 1
-                                    </div>
-                                </button>
-                            </li>
-                            <li class="mr-2" role="presentation">
-                                <button
-                                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active"
-                                    id="SA-tab" data-tabs-target="#SA" type="button" role="tab" aria-controls="SA"
-                                    aria-selected="true">
-                                    <div class="flex items-center w-max text-xl font-medium">
-                                        <img src="./assets/Poster/SA.png" class="object-contain h-10"> Serie A
-                                    </div>
-                                </button>
-                            </li>
-                            <li class="mr-2" role="presentation">
-                                <button
-                                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
-                                    id="PL-tab" data-tabs-target="#PL" type="button" role="tab" aria-controls="PL"
-                                    aria-selected="false">
-                                    <div class="flex items-center w-max text-xl font-medium">
-                                        <img src="./assets/Poster/PL.png" class="object-contain h-10"> Premier League
-                                    </div>
-                                </button>
-                            </li>
-                            <li role="presentation">
-                                <button
-                                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
-                                    id="LL-tab" data-tabs-target="#LL" type="button" role="tab" aria-controls="LL"
-                                    aria-selected="false">
-                                    <div class="flex items-center w-max text-xl font-medium">
-                                        <img src="./assets/Poster/LL.png" class="object-contain h-10"> La Liga
-                                    </div>
-                                </button>
-                            </li>
-                            <li role="presentation">
-                                <button
-                                    class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
-                                    id="BL-tab" data-tabs-target="#BL" type="button" role="tab" aria-controls="BL"
-                                    aria-selected="false">
-                                    <div class="flex items-center w-max text-xl font-medium">
-                                        <img src="./assets/Poster/BL.png" class="object-contain h-10"> Bundesliga
-                                    </div>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Table Header -->
-                    <div class="w-full mt-4">
-                        <ul class="flex justify-between items-center font-medium px-8 py-4">
-                            <li>Position</li>
-                            <li>Club</li>
-                            <li class="ml-28">W</li>
-                            <li>D</li>
-                            <li>L</li>
-                            <li>Point</li>
-                            <li class="w-28">Last Matches</li>
-                        </ul>
-                    </div>
-                    <div id="myTabContent">
-                        <div class="w-full overflow-y-scroll h-[70vh] my-6" id="scrolsLeague">
-                            <div class="bg-[#f2f0f9] rounded-lg  w-full my-2 hidden" id="L1" role="tabpanel"
-                                aria-labelledby="L1-tab">
-                            </div>
-                            <div class="bg-[#f2f0f9] rounded-lg  w-full my-2" id="SA" role="tabpanel"
-                                aria-labelledby="SA-tab">
-                            </div>
-                            <div class="bg-[#f2f0f9] rounded-lg  w-full my-2 hidden" id="PL" role="tabpanel"
-                                aria-labelledby="PL-tab">
-                            </div>
-                            <div class="bg-[#f2f0f9] rounded-lg  w-full my-2 hidden" id="LL" role="tabpanel"
-                                aria-labelledby="LL-tab">
-                            </div>
-                            <div class="bg-[#f2f0f9] rounded-lg  w-full my-2 hidden" id="BL" role="tabpanel"
-                                aria-labelledby="BL-tab">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-evenly items-center w-3/6 text-xl font-medium">
-                    <div class="flex items-center">
-                        <svg class="w-6 mr-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="50" r="50" fill="#f2f0f9" />
-                        </svg>Champions League
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-6 mr-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="50" r="50" fill="#fee6eb" />
-                        </svg>Europa League
-                    </div>
-                </div>
-
+            <!-- Table Header -->
+            <div class="w-full mt-4">
+              <ul
+                class="flex justify-between items-center font-medium px-8 py-4"
+              >
+                <li>Position</li>
+                <li>Club</li>
+                <li class="ml-28">W</li>
+                <li>D</li>
+                <li>L</li>
+                <li>Point</li>
+                <li class="w-28">Last Matches</li>
+              </ul>
             </div>
-        </section>
-        <section class="flex flex-col my-8 rounded-xl w-[88.5%] bg-white">
-            <div class="px-16 py-12">
-                <div class="text-2xl font-bold indent-4 capitalize">🎮clubs</div>
-                <div class="max-w-7xl mx-auto">
-                    <div class="text-end mr-[85px]">
-                        <button class="prev">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                            </svg>
-                        </button>
-                        <button class="next">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club1.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club2.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club3.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club4.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club5.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club6.png" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./assets/ClubsLogo/Club7.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="myTabContent">
+              <div
+                class="w-full overflow-y-scroll h-[70vh] my-6"
+                id="scrolsLeague"
+              >
+                <div
+                  class="bg-[#f2f0f9] rounded-lg w-full my-2 hidden"
+                  id="L1"
+                  role="tabpanel"
+                  aria-labelledby="L1-tab"
+                ></div>
+                <div
+                  class="bg-[#f2f0f9] rounded-lg w-full my-2"
+                  id="SA"
+                  role="tabpanel"
+                  aria-labelledby="SA-tab"
+                ></div>
+                <div
+                  class="bg-[#f2f0f9] rounded-lg w-full my-2 hidden"
+                  id="PL"
+                  role="tabpanel"
+                  aria-labelledby="PL-tab"
+                ></div>
+                <div
+                  class="bg-[#f2f0f9] rounded-lg w-full my-2 hidden"
+                  id="LL"
+                  role="tabpanel"
+                  aria-labelledby="LL-tab"
+                ></div>
+                <div
+                  class="bg-[#f2f0f9] rounded-lg w-full my-2 hidden"
+                  id="BL"
+                  role="tabpanel"
+                  aria-labelledby="BL-tab"
+                ></div>
+              </div>
             </div>
-            <div class="w-11/12 flex justify-center py-8">
-                <img class="ml-24 w-11/12 object-contain" src="./assets/Poster/downloadApp.png" />
+            <div class="bg-[#fee6eb] rounded-lg w-full my-4">
+              <ul
+                class="flex justify-between items-center font-medium px-8 py-4"
+              >
+                <li>6</li>
+                <li class="flex items-center justify-between w-36">
+                  <img
+                    class="object-contain h-10"
+                    src="./assets/Poster/MNUL.png"
+                  />Everton
+                </li>
+                <li>10</li>
+                <li>6</li>
+                <li>2</li>
+                <li>36</li>
+                <li class="flex w-32 justify-evenly">
+                  <svg
+                    style="fill: green"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4"
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 52 52"
+                    xml:space="preserve"
+                  >
+                    <path
+                      d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28h-25c-1.104,0-2-0.896-2-2
+                            s0.896-2,2-2h25c1.104,0,2,0.896,2,2S39.604,28,38.5,28z"
+                      fill="orange"
+                    />
+                  </svg>
+                  <svg
+                    style="fill: green"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+                    />
+                  </svg>
+                  <svg
+                    class="w-4"
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 52 52"
+                    xml:space="preserve"
+                  >
+                    <path
+                      d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28h-25c-1.104,0-2-0.896-2-2
+                            s0.896-2,2-2h25c1.104,0,2,0.896,2,2S39.604,28,38.5,28z"
+                      fill="orange"
+                    />
+                  </svg>
+                  <svg
+                    style="fill: green"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="1em"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+                    />
+                  </svg>
+                </li>
+              </ul>
             </div>
-            <div class="px-16 py-12">
-                <div class="text-2xl font-bold indent-4 capitalize pb-16">📰 All News and Transfer Today</div>
-                <div class="w-full flex flex-col">
-                    <div class="text-xl font-bold indent-4 capitalize w-1/4 flex justify-between pb-6">
-                        <div>All News</div>
-                        <div class="text-slate-400">Hot News</div>
-                    </div>
-                    <div class="flex">
-                        <div class="z-[1] h-2 w-36 bg-[#5742a9] rounded-l"></div>
-                        <div class="h-2 w-full bg-gray-200 rounded"></div>
-                    </div>
-                </div>
+          </div>
+          <div
+            class="flex justify-evenly items-center w-3/6 text-xl font-medium"
+          >
+            <div class="flex items-center">
+              <svg
+                class="w-6 mr-2"
+                viewBox="0 0 100 100"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="50" cy="50" r="50" fill="#f2f0f9" /></svg
+              >Champions League
             </div>
-            <div class="w-full flex justify-evenly">
-                <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem]  overflow-hidden">
-                    <div>
-                        <a class="twitter-timeline" href="https://twitter.com/FabrizioRomano?ref_src=twsrc%5Etfw">Tweets
-                            by
-                            Fabrizio Romano</a>
-                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
-                </div>
-                <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem]  overflow-hidden">
-                    <div>
-                        <a class="twitter-timeline" href="https://twitter.com/David_Ornstein?ref_src=twsrc%5Etfw">Tweets
-                            by
-                            David Ornstein</a>
-                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
-                </div>
-                <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem] overflow-hidden">
-                    <div>
-                        <a class="twitter-timeline" href="https://twitter.com/DiMarzio?ref_src=twsrc%5Etfw">Tweets
-                            by
-                            Gianluca Di Marzio</a>
-                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
-                </div>
+            <div class="flex items-center">
+              <svg
+                class="w-6 mr-2"
+                viewBox="0 0 100 100"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="50" cy="50" r="50" fill="#fee6eb" /></svg
+              >Europa League
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
+      <section class="flex flex-col my-8 rounded-xl w-[88.5%] bg-white">
+        <div class="px-16 py-12">
+          <div class="text-2xl font-bold indent-4 capitalize">🎮clubs</div>
+          <div class="max-w-7xl mx-auto">
+            <div class="text-end mr-[85px]">
+              <button class="prev">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </button>
+              <button class="next">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club1.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club2.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club3.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club4.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club5.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club6.png" alt="" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./assets/ClubsLogo/Club7.png" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-11/12 flex justify-center py-8">
+          <img
+            class="ml-24 w-11/12 object-contain"
+            src="./assets/Poster/downloadApp.png"
+          />
+        </div>
+        <div class="px-16 py-12">
+          <div class="text-2xl font-bold indent-4 capitalize pb-16">
+            📰 All News and Transfer Today
+          </div>
+          <div class="w-full flex flex-col">
+            <div
+              class="text-xl font-bold indent-4 capitalize w-1/4 flex justify-between pb-6"
+            >
+              <div>All News</div>
+              <div class="text-slate-400">Hot News</div>
+            </div>
+            <div class="flex">
+              <div class="z-[1] h-2 w-36 bg-[#5742a9] rounded-l"></div>
+              <div class="h-2 w-full bg-gray-200 rounded"></div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full flex justify-evenly">
+          <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem] overflow-hidden">
+            <div>
+              <a
+                class="twitter-timeline"
+                href="https://twitter.com/FabrizioRomano?ref_src=twsrc%5Etfw"
+                >Tweets by Fabrizio Romano</a
+              >
+              <script
+                async
+                src="https://platform.twitter.com/widgets.js"
+                charset="utf-8"
+              ></script>
+            </div>
+          </div>
+          <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem] overflow-hidden">
+            <div>
+              <a
+                class="twitter-timeline"
+                href="https://twitter.com/David_Ornstein?ref_src=twsrc%5Etfw"
+                >Tweets by David Ornstein</a
+              >
+              <script
+                async
+                src="https://platform.twitter.com/widgets.js"
+                charset="utf-8"
+              ></script>
+            </div>
+          </div>
+          <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem] overflow-hidden">
+            <div>
+              <a
+                class="twitter-timeline"
+                href="https://twitter.com/DiMarzio?ref_src=twsrc%5Etfw"
+                >Tweets by Gianluca Di Marzio</a
+              >
+              <script
+                async
+                src="https://platform.twitter.com/widgets.js"
+                charset="utf-8"
+              ></script>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <footer class="bg-white rounded-lg shadow w-[88.5%] mb-4">
-        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 sm:text-cente">© 2023 <a href="https://flowbite.com/"
-                    class="hover:underline">FootAll</a>. All Rights Reserved.
-            </span>
-            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0">
-                <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
-                </li>
-                <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
-                </li>
-                <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6">Licensing</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:underline">Contact</a>
-                </li>
-            </ul>
-        </div>
+      <div
+        class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between"
+      >
+        <span class="text-sm text-gray-500 sm:text-cente"
+          >© 2023
+          <a href="https://flowbite.com/" class="hover:underline">FootAll</a>.
+          All Rights Reserved.
+        </span>
+        <ul
+          class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0"
+        >
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6">About</a>
+          </li>
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6">Licensing</a>
+          </li>
+          <li>
+            <a href="#" class="hover:underline">Contact</a>
+          </li>
+        </ul>
+      </div>
     </footer>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 6,
-            spaceBetween: 30,
-            loop: true,
+      var swiper = new Swiper('.mySwiper', {
+        slidesPerView: 6,
+        spaceBetween: 30,
+        loop: true,
 
-            navigation: {
-                nextEl: ".next",
-                prevEl: ".prev",
-            },
-        });
+        navigation: {
+          nextEl: '.next',
+          prevEl: '.prev',
+        },
+      });
     </script>
     <!-- Matches -->
     <script>
-        const container = document.querySelector("#matches");
-        const match = document.createElement('ul');
+      const container = document.querySelector('#matches');
+      const match = document.createElement('ul');
 
-        match.classList.add('flex justify-evenly items-center pt-3 text-slate-500 font-normal');
+      match.classList.add(
+        'flex justify-evenly items-center pt-3 text-slate-500 font-normal'
+      );
 
-        match.innerHTML = `
+      match.innerHTML = `
     <li class="flex items-center justify-between w-80">
         <img class="object-contain h-10" src="${match.homeTeam.crest}">${match.homeTeam.name} <span>VS</span> 
         <img
@@ -641,58 +926,18 @@
             </svg>
         </a>
     </li>`;
-        container.appendChild(match);
+      container.appendChild(match);
     </script>
     <script>
-        const likeBtn = document.querySelector("#likeBtn");
-        const like = document.querySelector("#likeBtn>path");
-        likeBtn.addEventListener("click", () => {
-            console.log(likeBtn.fill);
-            like.classList.toggle('fill-red-600');
-            like.classList.toggle('fill-gray-400');
-        });
+      const likeBtn = document.querySelector('#likeBtn');
+      const like = document.querySelector('#likeBtn>path');
+      likeBtn.addEventListener('click', () => {
+        console.log(likeBtn.fill);
+        like.classList.toggle('fill-red-600');
+        like.classList.toggle('fill-gray-400');
+      });
     </script>
-    <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
-    <!--Leagues Tables-->
-    <script>
-        const leagues = document.querySelectorAll('#scrolsLeague>div');
-        leagues.forEach((league) => {
-            const team = document.createElement('ul');
-            team.classList.add('flex justify-between items-center font-medium px-8 py-4');
-            team.innerHTML = `<li>1</li>
-            <li class="flex items-center justify-start gap-5 w-52"><img
-                    class="object-contain h-10" src="${table.position[0].crest}"> ${table.position[0].name}
-            </li>
-            <li>14</li>
-            <li>3</li>
-            <li>1</li>
-            <li>45</li>
-            <li class="flex w-32 justify-evenly"><svg style="fill: green;"
-                    xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                    <path
-                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-                    viewBox="0 0 512 512">
-                    <path
-                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-                    viewBox="0 0 512 512">
-                    <path
-                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-                    viewBox="0 0 512 512">
-                    <path
-                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-                    viewBox="0 0 512 512">
-                    <path
-                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-                </svg>
-            </li>`
-            team.appendChild(league);
-        });
 
-    </script>
-</body>
-
+    <script src="./assets/js/index.js"></script>
+  </body>
 </html>
