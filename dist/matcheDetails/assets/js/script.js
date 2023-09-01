@@ -407,5 +407,3 @@ async function fetchMatch(id) {
 }
 
 // fetchMatch(currentTeam.Fiorentina.id);
-
-console.log(getMatch('real'));
