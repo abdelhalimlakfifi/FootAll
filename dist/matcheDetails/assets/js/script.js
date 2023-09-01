@@ -406,4 +406,6 @@ async function fetchMatch(id) {
   });
 }
 
-// fetchMatch(currentTeam.Fiorentina.id);
+fetchMatch(currentTeam.Fiorentina.id);
+
+console.log(getMatch('bar'));
