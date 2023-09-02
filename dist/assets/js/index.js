@@ -197,6 +197,105 @@ const teamShort = [
   'Monza',
 ];
 
+const teamLong = [
+  'Arsenal FC',
+  'Aston Villa FC',
+  'Chelsea FC',
+  'Everton FC',
+  'Fulham FC',
+  'Liverpool FC',
+  'Manchester City FC',
+  'Manchester United FC',
+  'Newcastle United FC',
+  'Tottenham Hotspur FC',
+  'Wolverhampton Wanderers FC',
+  'Burnley FC',
+  'Nottingham Forest FC',
+  'Crystal Palace FC',
+  'Sheffield United FC',
+  'Luton Town FC',
+  'Brighton & Hove Albion FC',
+  'Brentford FC',
+  'West Ham United FC',
+  'AFC Bournemouth',
+  '1. FC Köln',
+  'TSG 1899 Hoffenheim',
+  'Bayer 04 Leverkusen',
+  'Borussia Dortmund',
+  'FC Bayern München',
+  'VfB Stuttgart',
+  'VfL Wolfsburg',
+  'SV Werder Bremen',
+  '1. FSV Mainz 05',
+  'FC Augsburg',
+  'SC Freiburg',
+  'Borussia Mönchengladbach',
+  'Eintracht Frankfurt',
+  '1. FC Union Berlin',
+  'VfL Bochum 1848',
+  '1. FC Heidenheim 1846',
+  'SV Darmstadt 98',
+  'RB Leipzig',
+  'Toulouse FC',
+  'Stade Brestois 29',
+  'Olympique de Marseille',
+  'Montpellier HSC',
+  'Lille OSC',
+  'OGC Nice',
+  'Olympique Lyonnais',
+  'Paris Saint-Germain FC',
+  'FC Lorient',
+  'Stade Rennais FC 1901',
+  'Le Havre AC',
+  'Clermont Foot 63',
+  'FC Nantes',
+  'FC Metz',
+  'Racing Club de Lens',
+  'Stade de Reims',
+  'AS Monaco FC',
+  'RC Strasbourg Alsace',
+  'AC Milan',
+  'ACF Fiorentina',
+  'AS Roma',
+  'Atalanta BC',
+  'Bologna FC 1909',
+  'Cagliari Calcio',
+  'Genoa CFC',
+  'FC Internazionale Milano',
+  'Juventus FC',
+  'SS Lazio',
+  'SSC Napoli',
+  'Udinese Calcio',
+  'Empoli FC',
+  'Hellas Verona FC',
+  'US Salernitana 1919',
+  'Frosinone Calcio',
+  'US Sassuolo Calcio',
+  'Torino FC',
+  'US Lecce',
+  'AC Monza',
+  'Athletic Club',
+  'Club Atlético de Madrid',
+  'CA Osasuna',
+  'FC Barcelona',
+  'Getafe CF',
+  'Granada CF',
+  'Real Madrid CF',
+  'Rayo Vallecano de Madrid',
+  'RCD Mallorca',
+  'Real Betis Balompié',
+  'Real Sociedad de Fútbol',
+  'Villarreal CF',
+  'Valencia CF',
+  'Deportivo Alavés',
+  'Cádiz CF',
+  'UD Almería',
+  'UD Las Palmas',
+  'Girona FC',
+  'RC Celta de Vigo',
+  'Sevilla FC',
+];
+
 var distance = function (a, b) {
   var _a;
   if (a.length === 0) return b.length;
@@ -243,21 +342,21 @@ function getMatch(str) {
     let smallname = team[0].toLowerCase();
     let lowerStr = str.toLowerCase();
     if (bigname.includes(lowerStr)) {
-      matches.push(team[0]);
+      matches.push(team[1]);
     } else if (smallname.includes(lowerStr)) {
-      matches.push(team[0]);
+      matches.push(team[1]);
     } else if (matches.length >= 1) {
-      const split = team[0].split(' ');
+      const split = team[1].split(' ');
       split.forEach((token) => {
         const splitmatch = distance(str, token);
-        if (splitmatch <= 3 && !matches.includes(team[0])) {
-          closeMatches.push(team[0]);
+        if (splitmatch <= 3 && !matches.includes(team[1])) {
+          closeMatches.push(team[1]);
         }
       });
     }
   });
 
-  const othermatches = closestMatch(str, teamShort, true);
+  const othermatches = closestMatch(str, teamLong, true);
   othermatches.forEach((match) => {
     if (!matches.includes(match)) {
       matches.push(match);

@@ -344,6 +344,7 @@ const teams = {};
   });
 }); */
 
+// fetch user from twitter using keyword
 async function fetchTwitter() {
   const url = `https://twitter135.p.rapidapi.com/v2/UserByScreenName/?username=${removeSpaces(
     slugTeam
@@ -360,6 +361,7 @@ async function fetchTwitter() {
   return result;
 }
 
+//fetch game using id from api
 async function fetchMatch(id) {
   let matchurl =
     baseurl +
@@ -422,4 +424,16 @@ async function fetchMatch(id) {
   });
 }
 
-fetchMatch(currentTeam[slugTeam].id);
+function smallName(bigName) {
+  for (let i of teamNames) {
+    if (i[1] === bigName) {
+      return i[0];
+    }
+  }
+}
+
+const focused = smallName(slugTeam);
+
+console.log(focused);
+
+fetchMatch(currentTeam[focused].id);
