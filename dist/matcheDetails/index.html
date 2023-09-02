@@ -95,35 +95,21 @@
             <p
               id="matchDate"
               class="font-bold relative w-fit mx-auto px-20 py-2 rounded-full text-[25px] text-white"
-            >
-              Tuesday, August 29, 2023 at 19:45
-            </p>
+            ></p>
           </div>
           <!-- Date And Times -->
 
           <!-- Logo And Timer || Results -->
           <div class="flex justify-between mx-48">
             <div>
-              <img
-                id="homeLogo"
-                src="./teamLogo/team_1.png"
-                class="h-[150px]"
-                alt=""
-              />
+              <img id="homeLogo" src="" class="h-[150px]" alt="" />
             </div>
             <div>
-              <p id="hour" class="font-bold mt-16 text-white text-5xl">
-                15:00:00
-              </p>
+              <p id="hour" class="font-bold mt-16 text-white text-5xl"></p>
             </div>
 
             <div>
-              <img
-                id="awayLogo"
-                src="./teamLogo/team_2.png"
-                class="h-[150px]"
-                alt=""
-              />
+              <img id="awayLogo" src="" class="h-[150px]" alt="" />
             </div>
           </div>
           <!-- Logo And Timer || Results -->
@@ -336,17 +322,58 @@
         <!-- end matches -->
 
         <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem] overflow-auto">
-          <div>
-            <a
-              class="twitter-timeline"
-              href="https://twitter.com/FCBarcelona?ref_src=twsrc%5Etfw"
-              >Tweets by FCBarcelona</a
-            >
-            <script
-              async
-              src="https://platform.twitter.com/widgets.js"
-              charset="utf-8"
-            ></script>
+          <div id="twitthandles">
+            <script>
+              let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
+              function removeSpaces(string) {
+                let str = '';
+                for (let i of string) {
+                  if (i === ' ') {
+                    continue;
+                  }
+                  str += i;
+                }
+                return str;
+              }
+              async function fetchTwitter() {
+                const url = `https://twitter135.p.rapidapi.com/v2/UserByScreenName/?username=${removeSpaces(
+                  slugTeam
+                )}`;
+                const options = {
+                  method: 'GET',
+                  headers: {
+                    'X-RapidAPI-Key':
+                      '0013b9b2c2mshab8a6f847a49d05p10a33djsn3e9c44cbae9c',
+                    'X-RapidAPI-Host': 'twitter135.p.rapidapi.com',
+                  },
+                };
+                const response = await fetch(url, options);
+                const result = await response.json();
+                return result;
+              }
+
+              fetchTwitter(slugTeam).then((response) => {
+                console.log(response);
+                const scrTwt = document.createElement('script');
+                scrTwt.setAttribute('async', true);
+                scrTwt.setAttribute(
+                  'src',
+                  'https://platform.twitter.com/widgets.js'
+                );
+                scrTwt.setAttribute('charset', 'utf-8');
+                const twittEmbed = document.getElementById('twitthandles');
+
+                twittEmbed.innerHTML = `
+                <a  class="twitter-timeline" href="https://twitter.com/${response.data.user.result.legacy.screen_name}?ref_src=twsrc%5Etfw"></a>
+`;
+
+                console.log('///////////////////:');
+
+                twittEmbed.appendChild(scrTwt);
+                console.log(twittEmbed);
+                console.log(scrTwt);
+              });
+            </script>
           </div>
         </div>
       </div>

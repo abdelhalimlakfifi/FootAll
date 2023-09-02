@@ -201,6 +201,7 @@ const teamShort = [
   'Lecce',
   'Monza',
 ];
+let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
 
 const currentTeam = focusedTeam[0];
 let baseurl = 'http://localhost:3000/';
@@ -343,6 +344,22 @@ const teams = {};
   });
 }); */
 
+async function fetchTwitter() {
+  const url = `https://twitter135.p.rapidapi.com/v2/UserByScreenName/?username=${removeSpaces(
+    slugTeam
+  )}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '0013b9b2c2mshab8a6f847a49d05p10a33djsn3e9c44cbae9c',
+      'X-RapidAPI-Host': 'twitter135.p.rapidapi.com',
+    },
+  };
+  const response = await fetch(url, options);
+  const result = await response.json();
+  return result;
+}
+
 async function fetchMatch(id) {
   let matchurl =
     baseurl +
@@ -368,11 +385,10 @@ async function fetchMatch(id) {
     };
     matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
     hour.innerHTML = playHour;
-    console.log(match);
     let lastUrl = baseurl + 'matches/' + match.id + '/head2head/';
     fetchTeams(lastUrl).then((previous) => {
       let getprev = JSON.parse(previous);
-      console.log(getprev);
+
       getprev.matches.forEach((match) => {
         let date = new Date(match.utcDate);
         let playHour = date.toLocaleDateString('en-US', formatOptions);
@@ -405,7 +421,5 @@ async function fetchMatch(id) {
     });
   });
 }
-
-let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
 
 fetchMatch(currentTeam[slugTeam].id);
