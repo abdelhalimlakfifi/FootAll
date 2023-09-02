@@ -311,7 +311,9 @@ searchInput.addEventListener('input', function () {
       let newElemnt = document.createElement('div');
       newElemnt.innerHTML = `
             <div class="cursor-pointer py-2 px-3 hover:bg-slate-100">
+                <a href="./matcheDetails/index.html?team=${res}">
                 <p class="text-sm font-medium text-gray-600">${res}</p>
+                </a>
             </div>
             `;
       suggestions.appendChild(newElemnt);

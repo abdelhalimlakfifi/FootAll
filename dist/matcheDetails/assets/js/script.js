@@ -1,10 +1,10 @@
 import dom from './dom.js';
 import focusedTeam from './dom.js';
-/* 
+
 const home = document.querySelector('#homeLogo');
 const away = document.querySelector('#awayLogo');
 const matchDate = document.querySelector('#matchDate');
-const hour = document.querySelector('#hour'); */
+const hour = document.querySelector('#hour');
 const teamNames = [
   ['Arsenal', 'Arsenal FC'],
   ['Aston Villa', 'Aston Villa FC'],
@@ -203,7 +203,7 @@ const teamShort = [
 ];
 
 const currentTeam = focusedTeam[0];
-let baseurl = 'http://127.0.0.1:3000/';
+let baseurl = 'http://localhost:3000/';
 const divisions = ['PL', 'PD', 'SA', 'BL1', 'FL1'];
 const urlTeams = [];
 var distance = function (a, b) {
@@ -406,33 +406,6 @@ async function fetchMatch(id) {
   });
 }
 
-fetchMatch(currentTeam.Fiorentina.id);
+let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
 
-const searchInput = document.getElementById('default-search');
-
-searchInput.addEventListener('input', function () {
-  let suggestions = document.getElementById('suggestion');
-
-  // Teams for Test
-
-  if (searchInput.value != '' || searchInput.value == null) {
-    // filter bash nreturn tems dial recherche
-    let results = getMatch(searchInput.value);
-
-    suggestions.innerHTML = '';
-
-    results.forEach((res) => {
-      let newElemnt = document.createElement('div');
-      newElemnt.innerHTML = `
-            <div class="cursor-pointer py-2 px-3 hover:bg-slate-100">
-                <p class="text-sm font-medium text-gray-600">${res}</p>
-            </div>
-            `;
-      suggestions.appendChild(newElemnt);
-    });
-
-    suggestions.classList.remove('hidden');
-  } else {
-    suggestions.classList.add('hidden');
-  }
-});
+fetchMatch(currentTeam[slugTeam].id);
