@@ -202,6 +202,11 @@ const teamShort = [
   'Monza',
 ];
 
+function getPlayers(shortName) {
+  console.log(currentTeam[shortName].squad);
+  return currentTeam[shortName].squad;
+}
+
 let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
 
 const currentTeam = focusedTeam[0];
@@ -375,11 +380,40 @@ async function fetchMatch(id) {
   fetchTeams(matchurl).then((response) => {
     let res = JSON.parse(response);
     const match = res.matches[0];
-    console.log(match);
-    console.log(res);
+
     let date = new Date(match.utcDate);
     let playHour = date.toTimeString().split(' ')[0];
 
+    //GET PLAYERS
+    document.getElementById('teamOneName').innerHTML = match.homeTeam.name;
+    document.getElementById('teamTwoName').innerHTML = match.awayTeam.name;
+    document.getElementById('teamOneManager').innerHTML =
+      currentTeam[match.homeTeam.shortName].coach.name;
+    document.getElementById('teamTwoManager').innerHTML =
+      currentTeam[match.awayTeam.shortName].coach.name;
+
+    let teamOneContainer = document.getElementById('team_1_lineUp');
+    let teamTwoContainer = document.getElementById('team_2_lineUp');
+
+    getPlayers(match.homeTeam.shortName).forEach((el) => {
+      let newPlayer = document.createElement('div');
+      newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
+      newPlayer.innerHTML += `<p class="text-sm">
+                                <span class="text-[#096A00] font-bold">${el.position}</span>
+                                <span class="font-[500]">${el.name}</span>
+                            </p>`;
+      document.getElementById('team_1_lineUp').appendChild(newPlayer);
+    });
+
+    getPlayers(match.awayTeam.shortName).forEach((el) => {
+      let newPlayer = document.createElement('div');
+      newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
+      newPlayer.innerHTML += `<p class="text-sm ">
+                                <span class="font-[500]">${el.name}</span>
+                                <span class="text-[#096A00] font-bold">${el.position}</span>
+                            </p>`;
+      document.getElementById('team_2_lineUp').appendChild(newPlayer);
+    });
     home.src = match.homeTeam.crest;
     away.src = match.awayTeam.crest;
     let formatOptions = {
@@ -393,7 +427,6 @@ async function fetchMatch(id) {
     let lastUrl = baseurl + 'matches/' + match.id + '/head2head/';
     fetchTeams(lastUrl).then((previous) => {
       let getprev = JSON.parse(previous);
-      console.log(getprev);
       getprev.matches.forEach((match) => {
         let date = new Date(match.utcDate);
         let playHour = date.toLocaleDateString('en-US', formatOptions);
