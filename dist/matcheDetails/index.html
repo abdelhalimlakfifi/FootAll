@@ -325,54 +325,138 @@
           <div id="twitthandles">
             <script>
               let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
-              function removeSpaces(string) {
-                let str = '';
-                for (let i of string) {
-                  if (i === ' ') {
-                    continue;
+              console.log(slugTeam);
+              const tweetTeams = [
+                ['Arsenal FC', '@Arsenal'],
+                ['Aston Villa FC', '@AVFCOfficial'],
+                ['Chelsea FC', '@ChelseaFC'],
+                ['Everton FC', '@Everton'],
+                ['Fulham FC', '@FulhamFC'],
+                ['Liverpool FC', '@LFC'],
+                ['Manchester City FC', '@ManCity'],
+                ['Manchester United FC', '@ManUtd'],
+                ['Newcastle United FC', '@NUFC'],
+                ['Tottenham Hotspur FC', '@SpursOfficial'],
+                ['Wolverhampton Wanderers FC', '@Wolves'],
+                ['Burnley FC', '@BurnleyOfficial'],
+                ['Nottingham Forest FC', '@NFFC'],
+                ['Crystal Palace FC', '@CPFC'],
+                ['Sheffield United FC', '@SheffieldUnited'],
+                ['Luton Town FC', '@LutonTown'],
+                ['Brighton & Hove Albion FC', '@OfficialBHAFC'],
+                ['Brentford FC', '@BrentfordFC'],
+                ['West Ham United FC', '@WestHam'],
+                ['AFC Bournemouth', '@AFCBournemouth'],
+                ['Borussia Dortmund', '@BVB'],
+                ['Bayern Munich', '@FCBayern'],
+                ['TSG 1899 Hoffenheim', '@TsgHoffenheim'],
+                ['Bayer 04 Leverkusen', '@Bayer04_en'],
+                ['FC Bayern Munich', '@FCBayern'],
+                ['VfB Stuttgart', '@VfBStuttgart'],
+                ['VfL Wolfsburg', '@VfL_Wolfsburg'],
+                ['SV Werder Bremen', '@werderbremen'],
+                ['1. FSV Mainz 05', '@Mainz05'],
+                ['FC Augsburg', '@FCAugsburg'],
+                ['SC Freiburg', '@scfreiburg'],
+                ['Borussia Mönchengladbach', '@borussia'],
+                ['Eintracht Frankfurt', '@Eintracht'],
+                ['1. FC Union Berlin', '@fcunionberlin'],
+                ['VfL Bochum 1848', '@VfLBochum'],
+                ['1. FC Heidenheim 1846', '@FCHeidenheim'],
+                ['SV Darmstadt 98', '@sv98darmstadt'],
+                ['RB Leipzig', '@RBLeipzig'],
+                ['Toulouse FC', '@ToulouseFC'],
+                ['Stade Brestois 29', '@StadeBrestois'],
+                ['Olympique de Marseille', '@OlympiqueDeMarseille'],
+                ['Montpellier HSC', '@MontpellierHSC'],
+                ['Lille OSC', '@LOSC'],
+                ['OGC Nice', '@ogcnice'],
+                ['Olympique Lyonnais', '@OL'],
+                ['Paris Saint-Germain FC', '@PSG'],
+                ['FC Lorient', '@FC_Lorient'],
+                ['Stade Rennais FC 1901', '@StadeRennais'],
+                ['Le Havre AC', '@LeHavreAC'],
+                ['Clermont Foot 63', '@ClermontFoot'],
+                ['FC Nantes', '@FCNantes'],
+                ['FC Metz', '@FCMetz'],
+                ['Racing Club de Lens', '@RCLens'],
+                ['Stade de Reims', '@Stade_de_Reims'],
+                ['AS Monaco FC', '@ASMonaco'],
+                ['RC Strasbourg Alsace', '@RCSA'],
+                ['AC Milan', '@acmilan'],
+                ['ACF Fiorentina', '@ACFiorentina'],
+                ['AS Roma', '@ASRoma'],
+                ['Atalanta BC', '@Atalanta_BC'],
+                ['Bologna FC 1909', '@BolognaFC1909'],
+                ['Cagliari Calcio', '@CagliariCalcio'],
+                ['Genoa CFC', '@GenoaCFC'],
+                ['FC Internazionale Milano', '@Inter'],
+                ['Juventus FC', '@juventus'],
+                ['US Lecce', '@USLecce'],
+                ['AC Monza', '@ACMonza'],
+                ['Athletic Club', '@AthleticClub'],
+                ['Club Atlético de Madrid', '@AtleticoMadrid'],
+                ['CA Osasuna', '@CAOsasuna'],
+                ['FC Barcelona', '@FCBarcelona'],
+                ['Getafe CF', '@GetafeCF'],
+                ['Granada CF', '@GranadaCFC'],
+                ['Real Madrid CF', '@RealMadrid'],
+                ['Rayo Vallecano de Madrid', '@RayoVallecano'],
+                ['RCD Mallorca', '@RCD_Mallorca'],
+                ['Real Betis Balompié', '@RealBetis'],
+                ['Real Sociedad de Fútbol', '@RealSociedad'],
+                ['Villarreal CF', '@VillarrealCF'],
+                ['Valencia CF', '@ValenciaCF'],
+                ['Deportivo Alavés', '@Alaves'],
+                ['Cádiz CF', '@CadizCF'],
+                ['UD Almería', '@UDAlmeria'],
+                ['UD Las Palmas', '@UDLP'],
+                ['Girona FC', '@GironaFC'],
+                ['RC Celta de Vigo', '@RCCelta'],
+                ['Sevilla FC', '@SevillaFC'],
+                ['1. FC Köln', '@fckoeln'],
+                ['FC Bayern München', '@FCBayern'],
+                ['SS Lazio', '@OfficialLazio'],
+                ['SSC Napoli', '@sscnapoli'],
+                ['Udinese Calcio', '@Udinese_Calcio'],
+                ['Empoli FC', '@EmpoliCalcio'],
+                ['Hellas Verona FC', '@HellasVeronaFC'],
+                ['US Salernitana 1919', '@Salernitana1919'],
+                ['Frosinone Calcio', '@FrosinoneCalcio'],
+                ['US Sassuolo Calcio', '@SassuoloUS'],
+                ['Torino FC', '@TorinoFC'],
+              ];
+
+              function getHandle() {
+                let twitter = '';
+                tweetTeams.forEach((team) => {
+                  if (team[0] === slugTeam) {
+                    twitter = team[1];
                   }
-                  str += i;
-                }
-                return str;
+                });
+                return twitter;
               }
-              async function fetchTwitter() {
-                const url = `https://twitter135.p.rapidapi.com/v2/UserByScreenName/?username=${removeSpaces(
-                  slugTeam
-                )}`;
-                const options = {
-                  method: 'GET',
-                  headers: {
-                    'X-RapidAPI-Key':
-                      '0013b9b2c2mshab8a6f847a49d05p10a33djsn3e9c44cbae9c',
-                    'X-RapidAPI-Host': 'twitter135.p.rapidapi.com',
-                  },
-                };
-                const response = await fetch(url, options);
-                const result = await response.json();
-                return result;
-              }
+              let currentTwitter = getHandle();
 
-              fetchTwitter(slugTeam).then((response) => {
-                console.log(response);
-                const scrTwt = document.createElement('script');
-                scrTwt.setAttribute('async', true);
-                scrTwt.setAttribute(
-                  'src',
-                  'https://platform.twitter.com/widgets.js'
-                );
-                scrTwt.setAttribute('charset', 'utf-8');
-                const twittEmbed = document.getElementById('twitthandles');
+              console.log('current twitter : ' + currentTwitter);
+              const scrTwt = document.createElement('script');
+              scrTwt.setAttribute('async', true);
+              scrTwt.setAttribute(
+                'src',
+                'https://platform.twitter.com/widgets.js'
+              );
+              scrTwt.setAttribute('charset', 'utf-8');
+              const twittEmbed = document.getElementById('twitthandles');
 
-                twittEmbed.innerHTML = `
-                <a  class="twitter-timeline" href="https://twitter.com/${response.data.user.result.legacy.screen_name}?ref_src=twsrc%5Etfw"></a>
+              twittEmbed.innerHTML = `
+                <a  class="twitter-timeline" href="https://twitter.com/${currentTwitter}?ref_src=twsrc%5Etfw"></a>
 `;
 
-                console.log('///////////////////:');
+              console.log('///////////////////:');
 
-                twittEmbed.appendChild(scrTwt);
-                console.log(twittEmbed);
-                console.log(scrTwt);
-              });
+              twittEmbed.appendChild(scrTwt);
+              console.log(twittEmbed);
+              console.log(scrTwt);
             </script>
           </div>
         </div>
