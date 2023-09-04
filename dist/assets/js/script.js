@@ -44,14 +44,17 @@ match.innerHTML = `
     container.appendChild(match);
 */
 // filling leagues tables
-/*
+
 const leagues = document.querySelectorAll('#scrolsLeague>div');
-leagues.forEach((league) => {
-    const team = document.createElement('ul');
-    team.classList.add('flex justify-between items-center font-medium px-8 py-4');
-    team.innerHTML = `<li>1</li>
+const leagueArray = [1, 2, 3, 4];
+leagueArray.forEach((league, index) => {
+  const team = document.createElement('ul');
+  team.classList.add('flex justify-between items-center font-medium px-8 py-4');
+  team.innerHTML = `<li>${index + 1}</li>
     <li class="flex items-center justify-start gap-5 w-52"><img
-            class="object-contain h-10" src="${table.position[0].crest}"> ${table.position[0].name}
+            class="object-contain h-10" src="${table.position[0].crest}"> ${
+    table.position[0].name
+  }
     </li>
     <li>14</li>
     <li>3</li>
@@ -78,7 +81,6 @@ leagues.forEach((league) => {
             <path
                 d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
         </svg>
-    </li>`
-    team.appendChild(league);
+    </li>`;
+  team.appendChild(league);
 });
-*/
