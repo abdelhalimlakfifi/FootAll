@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         article.classList.add('items-start');
         article.classList.add('max-w-xl');
         article.innerHTML = `<div
-        class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
         <a href="#">
         <img class="rounded-t-lg h-96 w-full object-cover" src="./assets/img/${blogs[i].img}" alt="" />
     </a>
