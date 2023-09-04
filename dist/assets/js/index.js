@@ -1,10 +1,5 @@
-import dom from './dom.js';
-import focusedTeam from './dom.js';
+const searchInput = document.getElementById('default-search');
 
-const home = document.querySelector('#homeLogo');
-const away = document.querySelector('#awayLogo');
-const matchDate = document.querySelector('#matchDate');
-const hour = document.querySelector('#hour');
 const teamNames = [
   ['Arsenal', 'Arsenal FC'],
   ['Aston Villa', 'Aston Villa FC'],
@@ -201,12 +196,106 @@ const teamShort = [
   'Lecce',
   'Monza',
 ];
-let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
 
-const currentTeam = focusedTeam[0];
-let baseurl = 'http://localhost:3000/';
-const divisions = ['PL', 'PD', 'SA', 'BL1', 'FL1'];
-const urlTeams = [];
+const teamLong = [
+  'Arsenal FC',
+  'Aston Villa FC',
+  'Chelsea FC',
+  'Everton FC',
+  'Fulham FC',
+  'Liverpool FC',
+  'Manchester City FC',
+  'Manchester United FC',
+  'Newcastle United FC',
+  'Tottenham Hotspur FC',
+  'Wolverhampton Wanderers FC',
+  'Burnley FC',
+  'Nottingham Forest FC',
+  'Crystal Palace FC',
+  'Sheffield United FC',
+  'Luton Town FC',
+  'Brighton & Hove Albion FC',
+  'Brentford FC',
+  'West Ham United FC',
+  'AFC Bournemouth',
+  '1. FC Köln',
+  'TSG 1899 Hoffenheim',
+  'Bayer 04 Leverkusen',
+  'Borussia Dortmund',
+  'FC Bayern München',
+  'VfB Stuttgart',
+  'VfL Wolfsburg',
+  'SV Werder Bremen',
+  '1. FSV Mainz 05',
+  'FC Augsburg',
+  'SC Freiburg',
+  'Borussia Mönchengladbach',
+  'Eintracht Frankfurt',
+  '1. FC Union Berlin',
+  'VfL Bochum 1848',
+  '1. FC Heidenheim 1846',
+  'SV Darmstadt 98',
+  'RB Leipzig',
+  'Toulouse FC',
+  'Stade Brestois 29',
+  'Olympique de Marseille',
+  'Montpellier HSC',
+  'Lille OSC',
+  'OGC Nice',
+  'Olympique Lyonnais',
+  'Paris Saint-Germain FC',
+  'FC Lorient',
+  'Stade Rennais FC 1901',
+  'Le Havre AC',
+  'Clermont Foot 63',
+  'FC Nantes',
+  'FC Metz',
+  'Racing Club de Lens',
+  'Stade de Reims',
+  'AS Monaco FC',
+  'RC Strasbourg Alsace',
+  'AC Milan',
+  'ACF Fiorentina',
+  'AS Roma',
+  'Atalanta BC',
+  'Bologna FC 1909',
+  'Cagliari Calcio',
+  'Genoa CFC',
+  'FC Internazionale Milano',
+  'Juventus FC',
+  'SS Lazio',
+  'SSC Napoli',
+  'Udinese Calcio',
+  'Empoli FC',
+  'Hellas Verona FC',
+  'US Salernitana 1919',
+  'Frosinone Calcio',
+  'US Sassuolo Calcio',
+  'Torino FC',
+  'US Lecce',
+  'AC Monza',
+  'Athletic Club',
+  'Club Atlético de Madrid',
+  'CA Osasuna',
+  'FC Barcelona',
+  'Getafe CF',
+  'Granada CF',
+  'Real Madrid CF',
+  'Rayo Vallecano de Madrid',
+  'RCD Mallorca',
+  'Real Betis Balompié',
+  'Real Sociedad de Fútbol',
+  'Villarreal CF',
+  'Valencia CF',
+  'Deportivo Alavés',
+  'Cádiz CF',
+  'UD Almería',
+  'UD Las Palmas',
+  'Girona FC',
+  'RC Celta de Vigo',
+  'Sevilla FC',
+];
+
 var distance = function (a, b) {
   var _a;
   if (a.length === 0) return b.length;
@@ -243,14 +332,7 @@ var closestMatch = function (target, array, showOccurrences) {
   return showOccurrences ? found : found[0];
 };
 
-const nextWeek = () => {
-  const now = new Date();
-  now.setDate(now.getDate() + 7);
-  return now.toISOString().split('T')[0];
-};
-
-const now = new Date().toISOString().split('T')[0];
-
+// Had function ghi dial Comparaison USELESS MSeee7hom mni tsali
 function getMatch(str) {
   const matches = [];
   const closeMatches = [];
@@ -260,21 +342,21 @@ function getMatch(str) {
     let smallname = team[0].toLowerCase();
     let lowerStr = str.toLowerCase();
     if (bigname.includes(lowerStr)) {
-      matches.push(team[0]);
+      matches.push(team[1]);
     } else if (smallname.includes(lowerStr)) {
-      matches.push(team[0]);
+      matches.push(team[1]);
     } else if (matches.length >= 1) {
-      const split = team[0].split(' ');
+      const split = team[1].split(' ');
       split.forEach((token) => {
         const splitmatch = distance(str, token);
-        if (splitmatch <= 3 && !matches.includes(team[0])) {
-          closeMatches.push(team[0]);
+        if (splitmatch <= 3 && !matches.includes(team[1])) {
+          closeMatches.push(team[1]);
         }
       });
     }
   });
 
-  const othermatches = closestMatch(str, teamShort, true);
+  const othermatches = closestMatch(str, teamLong, true);
   othermatches.forEach((match) => {
     if (!matches.includes(match)) {
       matches.push(match);
@@ -285,155 +367,59 @@ function getMatch(str) {
       matches.push(match);
     }
   });
-  return matches;
+  return matches.splice(0, 8);
 }
 
-async function fetchTeams(url) {
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
-      'Access-Control-Allow-Origin': '*',
-    },
-  };
-  const response = await fetch(url, options);
-  const result = await response.json();
-  return result;
-}
+//HTA HADI // Had function ghi dial Comparaison USELESS MSeee7hom mni tsali
+function editDistance(s1, s2) {
+  s1 = s1.toLowerCase();
+  s2 = s2.toLowerCase();
 
-class Team {
-  constructor(logo, name, stadium, id, coach, squad) {
-    this.logo = logo;
-    this.name = name;
-    this.stadium = stadium;
-    this.id = id;
-    this.coach = coach;
-    this.squad = squad;
-  }
-  getId() {
-    return this.id;
-  }
-}
-
-divisions.forEach((division) => {
-  let newurl = baseurl + 'competitions/' + division + '/teams';
-  urlTeams.push(newurl);
-});
-
-const teams = {};
-
-// get all teams from top 5 leagues
-
-/* urlTeams.forEach((url, index) => {
-  fetchTeams(url).then((resulted) => {
-    let result = JSON.parse(resulted);
-    result.teams.forEach((team) => {
-      const newteam = new Team(
-        team.crest,
-        team.name,
-        team.venue,
-        team.id,
-        team.coach,
-        team.squad
-      );
-      teams[team.shortName] = newteam;
-      teamShort.push(team.shortName);
-      arr.push([team.name, team.shortName]);
-    });
-    console.log(arr);
-  });
-}); */
-
-// fetch user from twitter using keyword
-async function fetchTwitter() {
-  const url = `https://twitter135.p.rapidapi.com/v2/UserByScreenName/?username=${removeSpaces(
-    slugTeam
-  )}`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '0013b9b2c2mshab8a6f847a49d05p10a33djsn3e9c44cbae9c',
-      'X-RapidAPI-Host': 'twitter135.p.rapidapi.com',
-    },
-  };
-  const response = await fetch(url, options);
-  const result = await response.json();
-  return result;
-}
-
-//fetch game using id from api
-async function fetchMatch(id) {
-  let matchurl =
-    baseurl +
-    'teams/' +
-    id +
-    '/matches/?dateFrom=' +
-    now +
-    '&dateTo=' +
-    nextWeek();
-  fetchTeams(matchurl).then((response) => {
-    let res = JSON.parse(response);
-    const match = res.matches[0];
-    let date = new Date(match.utcDate);
-    let playHour = date.toTimeString().split(' ')[0];
-
-    home.src = match.homeTeam.crest;
-    away.src = match.awayTeam.crest;
-    let formatOptions = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    };
-    matchDate.innerHTML = date.toLocaleDateString('en-US', formatOptions);
-    hour.innerHTML = playHour;
-    let lastUrl = baseurl + 'matches/' + match.id + '/head2head/';
-    fetchTeams(lastUrl).then((previous) => {
-      let getprev = JSON.parse(previous);
-
-      getprev.matches.forEach((match) => {
-        let date = new Date(match.utcDate);
-        let playHour = date.toLocaleDateString('en-US', formatOptions);
-        let matchContainer = document.createElement('div');
-        matchContainer.className = 'matchContainer';
-        matchContainer.innerHTML = `
-                    <p class="text-center font-bold pt-4">
-                         ${playHour}
-                    </p>
-                    <div class="flex justify-between pb-7 mx-20">
-                         <div class="flex gap-8">
-                              <p class="flex items-center font-rubik font-bold">${match.homeTeam.shortName}</p>
-                              <img src="${match.homeTeam.crest}" class="w-20 h-fit" alt="" />
-                         </div>
-                         <div class="flex">
-                              <p class="mt-5 font-bold text-3xl tracking-[1.25rem]">${match.score.fullTime.home}-${match.score.fullTime.away}</p>
-                         </div>
-     
-                         <div class="flex gap-8">
-                              <img src="${match.awayTeam.crest}" class="w-20 h-fit" alt="" />
-                              <p class="flex items-center font-rubik font-bold">${match.awayTeam.shortName}</p>
-                         </div>
-                    </div>
-     `;
-
-        document
-          .getElementById('matches_container')
-          .appendChild(matchContainer);
-      });
-    });
-  });
-}
-
-function smallName(bigName) {
-  for (let i of teamNames) {
-    if (i[1] === bigName) {
-      return i[0];
+  var costs = new Array();
+  for (var i = 0; i <= s1.length; i++) {
+    var lastValue = i;
+    for (var j = 0; j <= s2.length; j++) {
+      if (i == 0) costs[j] = j;
+      else {
+        if (j > 0) {
+          var newValue = costs[j - 1];
+          if (s1.charAt(i - 1) != s2.charAt(j - 1))
+            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+          costs[j - 1] = lastValue;
+          lastValue = newValue;
+        }
+      }
     }
+    if (i > 0) costs[s2.length] = lastValue;
   }
+  return costs[s2.length];
 }
 
-const focused = smallName(slugTeam);
+searchInput.addEventListener('input', function () {
+  let suggestions = document.getElementById('suggestion');
 
-console.log(focused);
+  // Teams for Test
 
-fetchMatch(currentTeam[focused].id);
+  if (searchInput.value != '' || searchInput.value == null) {
+    // filter bash nreturn tems dial recherche
+    let results = getMatch(searchInput.value);
+
+    suggestions.innerHTML = '';
+
+    results.forEach((res) => {
+      let newElemnt = document.createElement('div');
+      newElemnt.innerHTML = `
+            <div class="cursor-pointer py-2 px-3 hover:bg-slate-100">
+                <a href="./matcheDetails/index.html?team=${res}">
+                <p class="text-sm font-medium text-gray-600">${res}</p>
+                </a>
+            </div>
+            `;
+      suggestions.appendChild(newElemnt);
+    });
+
+    suggestions.classList.remove('hidden');
+  } else {
+    suggestions.classList.add('hidden');
+  }
+});
