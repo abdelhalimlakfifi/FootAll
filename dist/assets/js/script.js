@@ -45,46 +45,64 @@ match.innerHTML = `
 */
 // filling leagues tables
 
-import {Tab} from 'bootstrap';
+//import { Tab } from 'bootstrap';
 
-const leagues = document.querySelectorAll('#scrolsLeague>div');
-const leagueArray = [1, 2, 3, 4];
-leagueArray.forEach((league, index) => {
-  const team = document.createElement('ul');
-  team.classList.add('flex justify-between items-center font-medium px-8 py-4');
-  team.innerHTML = `<li>${index + 1}</li>
-    <li class="flex items-center justify-start gap-5 w-52"><img
-            class="object-contain h-10" src="">
-    </li>
-    <li>14</li>
-    <li>3</li>
-    <li>1</li>
-    <li>45</li>
-    <li class="flex w-32 justify-evenly"><svg style="fill: green;"
-            xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-            <path
-                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-        </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-            viewBox="0 0 512 512">
-            <path
-                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-        </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-            viewBox="0 0 512 512">
-            <path
-                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-        </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-            viewBox="0 0 512 512">
-            <path
-                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-        </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-            viewBox="0 0 512 512">
-            <path
-                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-        </svg>
-    </li>`;
-  /* 
-  const tab = document.querySelector('#L1');
-  console.log(tab);
-  tab.innerHTML('aaezaeaz');
-  tab.appendChild(team); */
+const leagues = document.querySelectorAll('#myTab>li>button');
+let l = [5, 4, 3, 2, 1, 2, 3, 4, 5];
+const tables = document.querySelectorAll('#scrolsLeague>div');
+leagues.forEach((league) => {
+    league.addEventListener('click', () => {
+        var i;
+        var leagueId = league.id.slice(0, 2);
+        tables.forEach((table, index) => {
+            if (leagueId === table.id) {
+                i = index;
+            }
+        });
+        l.forEach((x, index) => {
+            const team = document.createElement('ul');
+            team.classList.add('flex');
+            team.classList.add('py-4');
+            team.classList.add('px-8');
+            team.classList.add('font-medium');
+            team.classList.add('items-center');
+            team.classList.add('justify-between');
+            team.innerHTML = `<li>${index + 1}</li>
+        <li class="flex items-center justify-start gap-5 w-52"><img
+                class="object-contain h-10" src="">
+        </li>
+        <li>${x}</li>
+        <li>3</li>
+        <li>1</li>
+        <li>45</li>
+        <li class="flex w-32 justify-evenly"><svg style="fill: green;"
+                xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+            </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
+                viewBox="0 0 512 512">
+                <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+            </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
+                viewBox="0 0 512 512">
+                <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+            </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
+                viewBox="0 0 512 512">
+                <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+            </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
+                viewBox="0 0 512 512">
+                <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+            </svg>
+        </li>`;
+            tables[i].appendChild(team);
+        });
+    });
 });
+/*
+   const tab = document.querySelector('#L1');
+   console.log(tab);
+   tab.innerHTML('aaezaeaz');
+   tab.appendChild(team); */
