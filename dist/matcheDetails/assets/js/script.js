@@ -244,9 +244,9 @@ var closestMatch = function (target, array, showOccurrences) {
   return showOccurrences ? found : found[0];
 };
 
-const nextWeek = () => {
+const nextMonth = () => {
   const now = new Date();
-  now.setDate(now.getDate() + 7);
+  now.setDate(now.getDate() + 160);
   return now.toISOString().split('T')[0];
 };
 
@@ -371,7 +371,7 @@ async function fetchMatch(id) {
     '/matches/?dateFrom=' +
     now +
     '&dateTo=' +
-    nextWeek();
+    nextMonth();
   fetchTeams(matchurl).then((response) => {
     let res = JSON.parse(response);
     const match = res.matches[0];
