@@ -104,7 +104,7 @@
           </button>
         </div>
         <div
-          class="absolute mt-2 w-full rounded-md bg-white max-w-xl hidden transition duration-150 ease-in-out"
+          class="absolute mt-2 w-[38%] rounded-md bg-white max-w-xl hidden transition duration-150 ease-in-out"
           id="suggestion"
         >
           <div class="cursor-pointer py-2 px-3 hover:bg-slate-100">
@@ -129,15 +129,13 @@
               class="object-contain h-32 mt-4"
               src="./assets/Poster/PL.png"
             />
-            <div class="[word-spacing:45px] text-2xl">
-              ManchesterUnited vs Arsenal
-            </div>
+            <div class="[word-spacing:45px] text-2xl">team1 vs team2</div>
             <div class="[word-spacing:20px]">Sunday, 02 Septembre 2023</div>
             <div class="indent-1 [word-spacing:20px] font-semibold text-lg">
-              04 : 04 : 04
+              04 : 04 : 04 : 04
             </div>
             <div class="[word-spacing:24px] text-gray-500 capitalize">
-              Days Hours Minutes
+              Days Hours Minutes Seconds
             </div>
           </div>
           <img
@@ -148,32 +146,90 @@
         <div
           class="bg-white rounded-2xl h-[18,5rem] overflow-hidden w-1/4 flex flex-col items-center py-3"
         >
-          <h2 class="mt-2 text-xl font-semibold">Live Matches</h2>
-          <p class="mt-2 text-green-700 text-lg"></p>
-          <br />
+          <h2 class="mt-2 text-xl font-semibold">Live Match</h2>
+          <p class="mt-2 text-green-700 text-lg">curr min</p>
           <div class="mt-2 flex justify-between w-3/4">
             <img class="object-contain h-10" src="./assets/Poster/MNUL.png" />
             <div
               class="w-5/12 bg-[#efeef5] text-[#6f6a88] text-center rounded-2xl overflow-hidden text-lg pt-[5px]"
-            ></div>
+            >
+              curr - res
+            </div>
             <img class="object-contain h-10" src="./assets/Poster/ARSL.png" />
           </div>
-          <br />
+          <div class="mt-2 flex flex-col items-center">
+            <div class="mt-2 w-[17vw]">
+              <div class="flex justify-between">
+                <p class="text-sm text-[#096A00]">40%</p>
+                <p class="text-center font-semibold text-lg capitalize">
+                  Ball possession
+                </p>
+                <p class="text-sm text-[#560617]">60%</p>
+              </div>
 
-          <div class="mt-2 flex justify-between w-3/4">
-            <img class="object-contain h-10" src="./assets/Poster/MNUL.png" />
-            <div
-              class="w-5/12 bg-[#efeef5] text-[#6f6a88] text-center rounded-2xl overflow-hidden text-lg pt-[5px]"
-            ></div>
-            <img class="object-contain h-10" src="./assets/Poster/ARSL.png" />
-          </div>
-          <br />
-          <div class="mt-2 flex justify-between w-3/4">
-            <img class="object-contain h-10" src="./assets/Poster/MNUL.png" />
-            <div
-              class="w-5/12 bg-[#efeef5] text-[#6f6a88] text-center rounded-2xl overflow-hidden text-lg pt-[5px]"
-            ></div>
-            <img class="object-contain h-10" src="./assets/Poster/ARSL.png" />
+              <div class="w-full flex justify-center gap-4">
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#096A00] h-2.5 rounded-full ml-[60%]"
+                    style="width: 40%"
+                  ></div>
+                </div>
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#560617] h-2.5 rounded-full"
+                    style="width: 60%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2 w-[17vw]">
+              <div class="flex justify-between">
+                <p class="text-sm text-[#096A00]">6</p>
+                <p class="text-center font-semibold text-lg capitalize">
+                  Shots on target
+                </p>
+                <p class="text-sm text-[#560617]">13</p>
+              </div>
+
+              <div class="w-full flex justify-center gap-4">
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#096A00] h-2.5 rounded-full ml-[70%]"
+                    style="width: 30%"
+                  ></div>
+                </div>
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#560617] h-2.5 rounded-full"
+                    style="width: 70%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2 w-[17vw]">
+              <div class="flex justify-between">
+                <p class="text-sm text-[#096A00]">4</p>
+                <p class="text-center font-semibold text-lg capitalize">
+                  Offsides
+                </p>
+                <p class="text-sm text-[#560617]">6</p>
+              </div>
+
+              <div class="w-full flex justify-center gap-4">
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#096A00] h-2.5 rounded-full ml-[60%]"
+                    style="width: 40%"
+                  ></div>
+                </div>
+                <div class="w-2/4 bg-gray-200 rounded-full h-2.5">
+                  <div
+                    class="bg-[#560617] h-2.5 rounded-full"
+                    style="width: 60%"
+                  ></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
