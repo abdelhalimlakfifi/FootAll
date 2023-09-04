@@ -201,6 +201,7 @@ const teamShort = [
   'Lecce',
   'Monza',
 ];
+
 let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
 
 const currentTeam = focusedTeam[0];
@@ -243,9 +244,9 @@ var closestMatch = function (target, array, showOccurrences) {
   return showOccurrences ? found : found[0];
 };
 
-const nextWeek = () => {
+const nextMonth = () => {
   const now = new Date();
-  now.setDate(now.getDate() + 7);
+  now.setDate(now.getDate() + 160);
   return now.toISOString().split('T')[0];
 };
 
@@ -370,10 +371,12 @@ async function fetchMatch(id) {
     '/matches/?dateFrom=' +
     now +
     '&dateTo=' +
-    nextWeek();
+    nextMonth();
   fetchTeams(matchurl).then((response) => {
     let res = JSON.parse(response);
     const match = res.matches[0];
+    console.log(match);
+    console.log(res);
     let date = new Date(match.utcDate);
     let playHour = date.toTimeString().split(' ')[0];
 
@@ -390,7 +393,7 @@ async function fetchMatch(id) {
     let lastUrl = baseurl + 'matches/' + match.id + '/head2head/';
     fetchTeams(lastUrl).then((previous) => {
       let getprev = JSON.parse(previous);
-
+      console.log(getprev);
       getprev.matches.forEach((match) => {
         let date = new Date(match.utcDate);
         let playHour = date.toLocaleDateString('en-US', formatOptions);
@@ -433,7 +436,5 @@ function smallName(bigName) {
 }
 
 const focused = smallName(slugTeam);
-
-console.log(focused);
 
 fetchMatch(currentTeam[focused].id);
