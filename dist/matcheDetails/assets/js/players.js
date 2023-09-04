@@ -100,6 +100,9 @@ document.getElementById('teamTwoName').innerHTML = "Team 2";
 
 
 
+document.getElementById('teamOneManager').innerHTML = "Some One";
+document.getElementById('teamTwoManager').innerHTML = "Some One";
+
 let teamOneContainer = document.getElementById('team_1_lineUp');
 let teamTwoContainer = document.getElementById('team_2_lineUp');
 
