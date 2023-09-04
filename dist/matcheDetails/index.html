@@ -1,468 +1,431 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FootAll</title>
     <link rel="stylesheet" href="../assets/style.css" />
     <link rel="stylesheet" href="./assets/css/custom.css" />
     <script defer type="module" src="./assets/js/script.js"></script>
+    <script src="./assets/js/players.js" defer></script>
 
     <!-- bg-white rounded-3xl mb-4 -->
     <style>
-      .matchContainer {
-        background-color: white;
-        border-radius: 1.5rem;
-        margin-bottom: 1rem;
-      }
+        .matchContainer {
+            background-color: white;
+            border-radius: 1.5rem;
+            margin-bottom: 1rem;
+        }
     </style>
-  </head>
+</head>
 
-  <body class="bg-gray-100">
+<body class="bg-gray-100">
     <!-- Nav -->
     <nav class="relative px-4 py-4 flex justify-center items-center">
-      <form class="w-2/5">
-        <label
-          for="default-search"
-          class="mb-2 text-sm font-medium text-gray-900 sr-only"
-          >Search</label
-        >
-        <div class="relative">
-          <div
-            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-          >
-            <svg
-              class="w-4 h-4 text-gray-500"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-          </div>
-          <input
-            type="search"
-            id="default-search"
-            class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-            placeholder="Search Mockups, Logos..."
-            required
-          />
-          <button
-            type="submit"
-            class="text-white absolute right-2.5 bottom-2.5 bg-[#560617] hover:bg-[#871F35] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
-          >
-            <svg
-              class="w-4 h-4 text-white"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-          </button>
-        </div>
-      </form>
+        <form class="w-2/5">
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                </div>
+                <input type="search" id="default-search"
+                    class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                    placeholder="Search Mockups, Logos..." required />
+                <button type="submit"
+                    class="text-white absolute right-2.5 bottom-2.5 bg-[#560617] hover:bg-[#871F35] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2">
+                    <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                </button>
+            </div>
+        </form>
     </nav>
     <!-- End Nav -->
 
     <div id="body" class="max-w-7xl mx-auto">
-      <!-- Match details Header -->
-      <div
-        id="match_details__header"
-        class="w-full h-96 bg-contain relative rounded-[150px]"
-      >
-        <div
-          class="bg-black absolute top-0 left-0 w-full h-full opacity-50 rounded-[150px]"
-        ></div>
+        <!-- Match details Header -->
+        <div id="match_details__header" class="w-full h-96 bg-contain relative rounded-[150px]">
+            <div class="bg-black absolute top-0 left-0 w-full h-full opacity-50 rounded-[150px]"></div>
 
-        <div class="relative">
-          <!-- Date And Times -->
-          <div class="text-center pt-10">
-            <p
-              id="matchDate"
-              class="font-bold relative w-fit mx-auto px-20 py-2 rounded-full text-[25px] text-white"
-            ></p>
-          </div>
-          <!-- Date And Times -->
+            <div class="relative">
+                <!-- Date And Times -->
+                <div class="text-center pt-10">
+                    <p id="matchDate"
+                        class="font-bold relative w-fit mx-auto px-20 py-2 rounded-full text-[25px] text-white"></p>
+                </div>
+                <!-- Date And Times -->
 
-          <!-- Logo And Timer || Results -->
-          <div class="flex justify-between mx-48">
-            <div>
-              <img id="homeLogo" src="" class="h-[150px]" alt="" />
-            </div>
-            <div>
-              <p id="hour" class="font-bold mt-16 text-white text-5xl"></p>
-            </div>
+                <!-- Logo And Timer || Results -->
+                <div class="flex justify-between mx-48">
+                    <div>
+                        <img id="homeLogo" src="" class="h-[150px]" alt="" />
+                    </div>
+                    <div>
+                        <p id="hour" class="font-bold mt-16 text-white text-5xl"></p>
+                    </div>
 
-            <div>
-              <img id="awayLogo" src="" class="h-[150px]" alt="" />
+                    <div>
+                        <img id="awayLogo" src="" class="h-[150px]" alt="" />
+                    </div>
+                </div>
+                <!-- Logo And Timer || Results -->
             </div>
-          </div>
-          <!-- Logo And Timer || Results -->
         </div>
-      </div>
-      <!-- Match details header -->
+        <!-- Match details header -->
 
-      <div class="flex mt-4 gap-4">
+        
         <!-- matches -->
-        <div class="w-3/4" id="matches_container"></div>
-        <!-- end matches -->
+        <div class="flex mt-4 gap-4">
+            <!-- Formations -->
+            <div class="w-[37%] bg-white rounded-xl mb-4 flex items-center">
+                <div class="w-full">
+                    <h6 class="font-bold py-2 px-4 border-b border-gray-200 text-center" >
+                        Line Up
+                    </h6>
 
-        <div class="w-1/4 bg-white rounded-xl mb-4">
-          <div>
-            <h6
-              class="font-bold py-2 px-4 border-b border-gray-200 text-center"
-            >
-              Team Static
-            </h6>
+                    <div class="mt-4">
+                        <div class="flex gap-4 mx-10">
+                            <div class="w-1/2">
+                                <p class="text-sm">
+                                    <span class="font-[500]" id="teamOneName">Team 1</span>
+                                </p>
+                            </div>
 
-            <div class="mt-4">
-              <p class="text-center">pass</p>
+                            <div class="w-1/2">
+                                <p class="text-sm mx-10">
+                                    <span class="font-[500]" id="teamTwoName">Team 2</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-              <div class="flex gap-4 mx-4">
-                <div class="w-1/2">
-                  <p class="text-sm text-[#096A00]">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#096A00] h-2.5 rounded-full ml-[55%]"
-                      style="width: 45%"
-                    ></div>
-                  </div>
+                    <div class="flex">
+                        <div class="w-1/2" id="team_1_lineUp">
+                            
+                            
+                        </div>
+
+
+
+                        <div class="w-1/2" id="team_2_lineUp">
+                            
+                            
+                            
+                        </div>
+                    </div>
                 </div>
-
-                <div class="w-1/2">
-                  <p class="text-sm">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#560617] h-2.5 rounded-full"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
             </div>
+            <!-- end Formations -->
 
-            <div class="mt-4">
-              <p class="text-center">pass</p>
+            <!-- Formations -->
+            <div class="w-[37%] bg-white rounded-xl mb-4">
+                <div class="w-full">
+                    <h6 class="font-bold py-2 px-4 border-b border-gray-200 text-center" >
+                        Sub
+                    </h6>
 
-              <div class="flex gap-4 mx-4">
-                <div class="w-1/2">
-                  <p class="text-sm text-[#096A00]">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#096A00] h-2.5 rounded-full ml-[55%]"
-                      style="width: 45%"
-                    ></div>
-                  </div>
+                    <div class="mt-4">
+                        <div class="flex gap-4 mx-10">
+                            <div class="w-1/2">
+                                <p class="text-sm">
+                                    <span class="font-[500]" id="teamOneNameSub">Team 1</span>
+                                </p>
+                            </div>
+
+                            <div class="w-1/2">
+                                <p class="text-sm mx-10">
+                                    <span class="font-[500]" id="teamTwoNameSub">Team 2</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        <div class="w-1/2" id="team_1_sub">
+                            
+                            
+                        </div>
+
+
+
+                        <div class="w-1/2" id="team_2_sub">
+                            
+                            
+                            
+                        </div>
+                    </div>
                 </div>
-
-                <div class="w-1/2">
-                  <p class="text-sm">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#560617] h-2.5 rounded-full"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
             </div>
+            <!-- end Formations -->
+            
 
-            <div class="mt-4">
-              <p class="text-center">Shoot</p>
+            <div class="w-1/4 bg-white rounded-xl mb-4">
+                <div>
+                    <h6 class="font-bold py-2 px-4 border-b border-gray-200 text-center">
+                        Team Static
+                    </h6>
 
-              <div class="flex gap-4 mx-4">
-                <div class="w-1/2">
-                  <p class="text-sm text-[#096A00]">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#096A00] h-2.5 rounded-full ml-[55%]"
-                      style="width: 45%"
-                    ></div>
-                  </div>
+
+
+
+
+                    <div class="mt-4">
+                        <p class="text-center">Shoot</p>
+
+                        <div class="flex gap-4 mx-4">
+                            <div class="w-1/2">
+                                <p class="text-sm text-[#096A00]">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#096A00] h-2.5 rounded-full ml-[55%]" style="width: 45%"></div>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2">
+                                <p class="text-sm">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#560617] h-2.5 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-center">Ball Possession</p>
+
+                        <div class="flex gap-4 mx-4">
+                            <div class="w-1/2">
+                                <p class="text-sm text-[#096A00]">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#096A00] h-2.5 rounded-full ml-[55%]" style="width: 45%"></div>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2">
+                                <p class="text-sm">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#560617] h-2.5 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-center">Red Card</p>
+
+                        <div class="flex gap-4 mx-4">
+                            <div class="w-1/2">
+                                <p class="text-sm text-[#096A00]">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#096A00] h-2.5 rounded-full ml-[55%]" style="width: 45%"></div>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2">
+                                <p class="text-sm">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#560617] h-2.5 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-center">Yellow Card</p>
+
+                        <div class="flex gap-4 mx-4">
+                            <div class="w-1/2">
+                                <p class="text-sm text-[#096A00]">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#096A00] h-2.5 rounded-full ml-[55%]" style="width: 45%"></div>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2">
+                                <p class="text-sm">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#560617] h-2.5 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <p class="text-center">Offside</p>
+
+                        <div class="flex gap-4 mx-4">
+                            <div class="w-1/2">
+                                <p class="text-sm text-[#096A00]">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#096A00] h-2.5 rounded-full ml-[55%]" style="width: 45%"></div>
+                                </div>
+                            </div>
+
+                            <div class="w-1/2">
+                                <p class="text-sm">542</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-[#560617] h-2.5 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="w-1/2">
-                  <p class="text-sm">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#560617] h-2.5 rounded-full"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
             </div>
-
-            <div class="mt-4">
-              <p class="text-center">Ball Possession</p>
-
-              <div class="flex gap-4 mx-4">
-                <div class="w-1/2">
-                  <p class="text-sm text-[#096A00]">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#096A00] h-2.5 rounded-full ml-[55%]"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-
-                <div class="w-1/2">
-                  <p class="text-sm">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#560617] h-2.5 rounded-full"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4">
-              <p class="text-center">Red Card</p>
-
-              <div class="flex gap-4 mx-4">
-                <div class="w-1/2">
-                  <p class="text-sm text-[#096A00]">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#096A00] h-2.5 rounded-full ml-[55%]"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-
-                <div class="w-1/2">
-                  <p class="text-sm">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#560617] h-2.5 rounded-full"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4">
-              <p class="text-center">Yellow Card</p>
-
-              <div class="flex gap-4 mx-4">
-                <div class="w-1/2">
-                  <p class="text-sm text-[#096A00]">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#096A00] h-2.5 rounded-full ml-[55%]"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-
-                <div class="w-1/2">
-                  <p class="text-sm">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#560617] h-2.5 rounded-full"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4">
-              <p class="text-center">Offside</p>
-
-              <div class="flex gap-4 mx-4">
-                <div class="w-1/2">
-                  <p class="text-sm text-[#096A00]">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#096A00] h-2.5 rounded-full ml-[55%]"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-
-                <div class="w-1/2">
-                  <p class="text-sm">542</p>
-                  <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      class="bg-[#560617] h-2.5 rounded-full"
-                      style="width: 45%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <!-- Second part -->
-      <div class="flex mt-4 gap-4">
-        <!-- matches -->
-        <div class="w-3/4" id="matches_container"></div>
-        <!-- end matches -->
+        <!-- Second part -->
+        <div class="flex mt-4 gap-4">
+            <!-- matches -->
+            <div class="w-3/4" id="matches_container"></div>
+            <!-- end matches -->
 
-        <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem] overflow-auto">
-          <div id="twitthandles">
-            <script>
-              let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
-              console.log(slugTeam);
-              const tweetTeams = [
-                ['Arsenal FC', '@Arsenal'],
-                ['Aston Villa FC', '@AVFCOfficial'],
-                ['Chelsea FC', '@ChelseaFC'],
-                ['Everton FC', '@Everton'],
-                ['Fulham FC', '@FulhamFC'],
-                ['Liverpool FC', '@LFC'],
-                ['Manchester City FC', '@ManCity'],
-                ['Manchester United FC', '@ManUtd'],
-                ['Newcastle United FC', '@NUFC'],
-                ['Tottenham Hotspur FC', '@SpursOfficial'],
-                ['Wolverhampton Wanderers FC', '@Wolves'],
-                ['Burnley FC', '@BurnleyOfficial'],
-                ['Nottingham Forest FC', '@NFFC'],
-                ['Crystal Palace FC', '@CPFC'],
-                ['Sheffield United FC', '@SheffieldUnited'],
-                ['Luton Town FC', '@LutonTown'],
-                ['Brighton & Hove Albion FC', '@OfficialBHAFC'],
-                ['Brentford FC', '@BrentfordFC'],
-                ['West Ham United FC', '@WestHam'],
-                ['AFC Bournemouth', '@AFCBournemouth'],
-                ['Borussia Dortmund', '@BVB'],
-                ['Bayern Munich', '@FCBayern'],
-                ['TSG 1899 Hoffenheim', '@TsgHoffenheim'],
-                ['Bayer 04 Leverkusen', '@Bayer04_en'],
-                ['FC Bayern Munich', '@FCBayern'],
-                ['VfB Stuttgart', '@VfBStuttgart'],
-                ['VfL Wolfsburg', '@VfL_Wolfsburg'],
-                ['SV Werder Bremen', '@werderbremen'],
-                ['1. FSV Mainz 05', '@Mainz05'],
-                ['FC Augsburg', '@FCAugsburg'],
-                ['SC Freiburg', '@scfreiburg'],
-                ['Borussia Mönchengladbach', '@borussia'],
-                ['Eintracht Frankfurt', '@Eintracht'],
-                ['1. FC Union Berlin', '@fcunionberlin'],
-                ['VfL Bochum 1848', '@VfLBochum'],
-                ['1. FC Heidenheim 1846', '@FCHeidenheim'],
-                ['SV Darmstadt 98', '@sv98darmstadt'],
-                ['RB Leipzig', '@RBLeipzig'],
-                ['Toulouse FC', '@ToulouseFC'],
-                ['Stade Brestois 29', '@StadeBrestois'],
-                ['Olympique de Marseille', '@OlympiqueDeMarseille'],
-                ['Montpellier HSC', '@MontpellierHSC'],
-                ['Lille OSC', '@LOSC'],
-                ['OGC Nice', '@ogcnice'],
-                ['Olympique Lyonnais', '@OL'],
-                ['Paris Saint-Germain FC', '@PSG'],
-                ['FC Lorient', '@FC_Lorient'],
-                ['Stade Rennais FC 1901', '@StadeRennais'],
-                ['Le Havre AC', '@LeHavreAC'],
-                ['Clermont Foot 63', '@ClermontFoot'],
-                ['FC Nantes', '@FCNantes'],
-                ['FC Metz', '@FCMetz'],
-                ['Racing Club de Lens', '@RCLens'],
-                ['Stade de Reims', '@Stade_de_Reims'],
-                ['AS Monaco FC', '@ASMonaco'],
-                ['RC Strasbourg Alsace', '@RCSA'],
-                ['AC Milan', '@acmilan'],
-                ['ACF Fiorentina', '@ACFiorentina'],
-                ['AS Roma', '@ASRoma'],
-                ['Atalanta BC', '@Atalanta_BC'],
-                ['Bologna FC 1909', '@BolognaFC1909'],
-                ['Cagliari Calcio', '@CagliariCalcio'],
-                ['Genoa CFC', '@GenoaCFC'],
-                ['FC Internazionale Milano', '@Inter'],
-                ['Juventus FC', '@juventus'],
-                ['US Lecce', '@USLecce'],
-                ['AC Monza', '@ACMonza'],
-                ['Athletic Club', '@AthleticClub'],
-                ['Club Atlético de Madrid', '@AtleticoMadrid'],
-                ['CA Osasuna', '@CAOsasuna'],
-                ['FC Barcelona', '@FCBarcelona'],
-                ['Getafe CF', '@GetafeCF'],
-                ['Granada CF', '@GranadaCFC'],
-                ['Real Madrid CF', '@RealMadrid'],
-                ['Rayo Vallecano de Madrid', '@RayoVallecano'],
-                ['RCD Mallorca', '@RCD_Mallorca'],
-                ['Real Betis Balompié', '@RealBetis'],
-                ['Real Sociedad de Fútbol', '@RealSociedad'],
-                ['Villarreal CF', '@VillarrealCF'],
-                ['Valencia CF', '@ValenciaCF'],
-                ['Deportivo Alavés', '@Alaves'],
-                ['Cádiz CF', '@CadizCF'],
-                ['UD Almería', '@UDAlmeria'],
-                ['UD Las Palmas', '@UDLP'],
-                ['Girona FC', '@GironaFC'],
-                ['RC Celta de Vigo', '@RCCelta'],
-                ['Sevilla FC', '@SevillaFC'],
-                ['1. FC Köln', '@fckoeln'],
-                ['FC Bayern München', '@FCBayern'],
-                ['SS Lazio', '@OfficialLazio'],
-                ['SSC Napoli', '@sscnapoli'],
-                ['Udinese Calcio', '@Udinese_Calcio'],
-                ['Empoli FC', '@EmpoliCalcio'],
-                ['Hellas Verona FC', '@HellasVeronaFC'],
-                ['US Salernitana 1919', '@Salernitana1919'],
-                ['Frosinone Calcio', '@FrosinoneCalcio'],
-                ['US Sassuolo Calcio', '@SassuoloUS'],
-                ['Torino FC', '@TorinoFC'],
-              ];
+            <div class="w-1/4 bg-white rounded-xl mb-4 h-[27rem] overflow-auto">
+                <div id="twitthandles">
+                    <script>
+                        let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
+                        
+                        const tweetTeams = [
+                            ['Arsenal FC', '@Arsenal'],
+                            ['Aston Villa FC', '@AVFCOfficial'],
+                            ['Chelsea FC', '@ChelseaFC'],
+                            ['Everton FC', '@Everton'],
+                            ['Fulham FC', '@FulhamFC'],
+                            ['Liverpool FC', '@LFC'],
+                            ['Manchester City FC', '@ManCity'],
+                            ['Manchester United FC', '@ManUtd'],
+                            ['Newcastle United FC', '@NUFC'],
+                            ['Tottenham Hotspur FC', '@SpursOfficial'],
+                            ['Wolverhampton Wanderers FC', '@Wolves'],
+                            ['Burnley FC', '@BurnleyOfficial'],
+                            ['Nottingham Forest FC', '@NFFC'],
+                            ['Crystal Palace FC', '@CPFC'],
+                            ['Sheffield United FC', '@SheffieldUnited'],
+                            ['Luton Town FC', '@LutonTown'],
+                            ['Brighton & Hove Albion FC', '@OfficialBHAFC'],
+                            ['Brentford FC', '@BrentfordFC'],
+                            ['West Ham United FC', '@WestHam'],
+                            ['AFC Bournemouth', '@AFCBournemouth'],
+                            ['Borussia Dortmund', '@BVB'],
+                            ['Bayern Munich', '@FCBayern'],
+                            ['TSG 1899 Hoffenheim', '@TsgHoffenheim'],
+                            ['Bayer 04 Leverkusen', '@Bayer04_en'],
+                            ['FC Bayern Munich', '@FCBayern'],
+                            ['VfB Stuttgart', '@VfBStuttgart'],
+                            ['VfL Wolfsburg', '@VfL_Wolfsburg'],
+                            ['SV Werder Bremen', '@werderbremen'],
+                            ['1. FSV Mainz 05', '@Mainz05'],
+                            ['FC Augsburg', '@FCAugsburg'],
+                            ['SC Freiburg', '@scfreiburg'],
+                            ['Borussia Mönchengladbach', '@borussia'],
+                            ['Eintracht Frankfurt', '@Eintracht'],
+                            ['1. FC Union Berlin', '@fcunionberlin'],
+                            ['VfL Bochum 1848', '@VfLBochum'],
+                            ['1. FC Heidenheim 1846', '@FCHeidenheim'],
+                            ['SV Darmstadt 98', '@sv98darmstadt'],
+                            ['RB Leipzig', '@RBLeipzig'],
+                            ['Toulouse FC', '@ToulouseFC'],
+                            ['Stade Brestois 29', '@StadeBrestois'],
+                            ['Olympique de Marseille', '@OlympiqueDeMarseille'],
+                            ['Montpellier HSC', '@MontpellierHSC'],
+                            ['Lille OSC', '@LOSC'],
+                            ['OGC Nice', '@ogcnice'],
+                            ['Olympique Lyonnais', '@OL'],
+                            ['Paris Saint-Germain FC', '@PSG'],
+                            ['FC Lorient', '@FC_Lorient'],
+                            ['Stade Rennais FC 1901', '@StadeRennais'],
+                            ['Le Havre AC', '@LeHavreAC'],
+                            ['Clermont Foot 63', '@ClermontFoot'],
+                            ['FC Nantes', '@FCNantes'],
+                            ['FC Metz', '@FCMetz'],
+                            ['Racing Club de Lens', '@RCLens'],
+                            ['Stade de Reims', '@Stade_de_Reims'],
+                            ['AS Monaco FC', '@ASMonaco'],
+                            ['RC Strasbourg Alsace', '@RCSA'],
+                            ['AC Milan', '@acmilan'],
+                            ['ACF Fiorentina', '@ACFiorentina'],
+                            ['AS Roma', '@ASRoma'],
+                            ['Atalanta BC', '@Atalanta_BC'],
+                            ['Bologna FC 1909', '@BolognaFC1909'],
+                            ['Cagliari Calcio', '@CagliariCalcio'],
+                            ['Genoa CFC', '@GenoaCFC'],
+                            ['FC Internazionale Milano', '@Inter'],
+                            ['Juventus FC', '@juventus'],
+                            ['US Lecce', '@USLecce'],
+                            ['AC Monza', '@ACMonza'],
+                            ['Athletic Club', '@AthleticClub'],
+                            ['Club Atlético de Madrid', '@AtleticoMadrid'],
+                            ['CA Osasuna', '@CAOsasuna'],
+                            ['FC Barcelona', '@FCBarcelona'],
+                            ['Getafe CF', '@GetafeCF'],
+                            ['Granada CF', '@GranadaCFC'],
+                            ['Real Madrid CF', '@RealMadrid'],
+                            ['Rayo Vallecano de Madrid', '@RayoVallecano'],
+                            ['RCD Mallorca', '@RCD_Mallorca'],
+                            ['Real Betis Balompié', '@RealBetis'],
+                            ['Real Sociedad de Fútbol', '@RealSociedad'],
+                            ['Villarreal CF', '@VillarrealCF'],
+                            ['Valencia CF', '@ValenciaCF'],
+                            ['Deportivo Alavés', '@Alaves'],
+                            ['Cádiz CF', '@CadizCF'],
+                            ['UD Almería', '@UDAlmeria'],
+                            ['UD Las Palmas', '@UDLP'],
+                            ['Girona FC', '@GironaFC'],
+                            ['RC Celta de Vigo', '@RCCelta'],
+                            ['Sevilla FC', '@SevillaFC'],
+                            ['1. FC Köln', '@fckoeln'],
+                            ['FC Bayern München', '@FCBayern'],
+                            ['SS Lazio', '@OfficialLazio'],
+                            ['SSC Napoli', '@sscnapoli'],
+                            ['Udinese Calcio', '@Udinese_Calcio'],
+                            ['Empoli FC', '@EmpoliCalcio'],
+                            ['Hellas Verona FC', '@HellasVeronaFC'],
+                            ['US Salernitana 1919', '@Salernitana1919'],
+                            ['Frosinone Calcio', '@FrosinoneCalcio'],
+                            ['US Sassuolo Calcio', '@SassuoloUS'],
+                            ['Torino FC', '@TorinoFC'],
+                        ];
 
-              function getHandle() {
-                let twitter = '';
-                tweetTeams.forEach((team) => {
-                  if (team[0] === slugTeam) {
-                    twitter = team[1];
-                  }
-                });
-                return twitter;
-              }
-              let currentTwitter = getHandle();
+                        function getHandle() {
+                            let twitter = '';
+                            tweetTeams.forEach((team) => {
+                                if (team[0] === slugTeam) {
+                                    twitter = team[1];
+                                }
+                            });
+                            return twitter;
+                        }
+                        let currentTwitter = getHandle();
 
-              console.log('current twitter : ' + currentTwitter);
-              const scrTwt = document.createElement('script');
-              scrTwt.setAttribute('async', true);
-              scrTwt.setAttribute(
-                'src',
-                'https://platform.twitter.com/widgets.js'
-              );
-              scrTwt.setAttribute('charset', 'utf-8');
-              const twittEmbed = document.getElementById('twitthandles');
+                        console.log('current twitter : ' + currentTwitter);
+                        const scrTwt = document.createElement('script');
+                        scrTwt.setAttribute('async', true);
+                        scrTwt.setAttribute(
+                            'src',
+                            'https://platform.twitter.com/widgets.js'
+                        );
+                        scrTwt.setAttribute('charset', 'utf-8');
+                        const twittEmbed = document.getElementById('twitthandles');
 
-              twittEmbed.innerHTML = `
-                <a  class="twitter-timeline" href="https://twitter.com/${currentTwitter}?ref_src=twsrc%5Etfw"></a>
+                        twittEmbed.innerHTML = `
+            <a  class="twitter-timeline" href="https://twitter.com/${currentTwitter}?ref_src=twsrc%5Etfw"></a>
 `;
 
-              console.log('///////////////////:');
+                        
 
-              twittEmbed.appendChild(scrTwt);
-              console.log(twittEmbed);
-              console.log(scrTwt);
-            </script>
-          </div>
+                        twittEmbed.appendChild(scrTwt);
+                        
+                    </script>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <footer></footer>
-  </body>
+        <footer></footer>
+</body>
+
 </html>
