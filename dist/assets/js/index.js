@@ -355,7 +355,7 @@ const tweetTeams = [
   ['RC Strasbourg Alsace', '@RCSA'],
   ['AC Milan', '@acmilan'],
   ['ACF Fiorentina', '@ACFiorentina'],
-  ['AS Roma', '@ASRoma'],
+  ['AS Roma', '@OfficialASRoma'],
   ['Atalanta BC', '@Atalanta_BC'],
   ['Bologna FC 1909', '@BolognaFC1909'],
   ['Cagliari Calcio', '@CagliariCalcio'],
