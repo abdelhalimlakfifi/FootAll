@@ -109,10 +109,10 @@ let teamTwoContainer = document.getElementById('team_2_lineUp');
 
 lineUp["Team 1"].forEach((el) => {
     let newPlayer = document.createElement("div");
-    newPlayer.style.margin = "0.5rem 2.5rem 0.5rem 2.5rem";
+    newPlayer.style.margin = "0.5rem 0rem 0.5rem 0rem";
     newPlayer.innerHTML += `<p class="text-sm">
-                                <span class="text-[#096A00] font-bold">${el.position}</span>
                                 <span class="font-[500]">${el.name}</span>
+                                <span class="text-[#096A00] font-bold">${el.position}</span>
                             </p>`
     document.getElementById('team_1_lineUp').appendChild(newPlayer)
 });
@@ -121,8 +121,8 @@ lineUp["Team 1"].forEach((el) => {
 
 lineUp["Team 2"].forEach((el) => {
     let newPlayer = document.createElement("div");
-    newPlayer.style.margin = "0.5rem 2.5rem 0.5rem 2.5rem";
-    newPlayer.innerHTML += `<p class="text-sm ">
+    newPlayer.style.margin = "0.5rem 0rem 0.5rem 0rem";
+    newPlayer.innerHTML += `<p class="text-sm">
                                 <span class="font-[500]">${el.name}</span>
                                 <span class="text-[#096A00] font-bold">${el.position}</span>
                             </p>`
@@ -201,7 +201,7 @@ document.getElementById('teamTwoNameSub').innerHTML = "Team 2";
 
 sub["Team 1"].forEach((el) => {
     let newPlayer = document.createElement("div");
-    newPlayer.style.margin = "0.5rem 2.5rem 0.5rem 2.5rem";
+    newPlayer.style.margin = "0.5rem 0rem 0.5rem 0rem";
     newPlayer.innerHTML += `<p class="text-sm">
                                 <span class="text-[#096A00] font-bold">${el.position}</span>
                                 <span class="font-[500]">${el.name}</span>

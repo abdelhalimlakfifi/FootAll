@@ -623,6 +623,10 @@ video {
   top: 0px;
 }
 
+.bottom-0{
+  bottom: 0px;
+}
+
 .z-10{
   z-index: 10;
 }
@@ -683,6 +687,11 @@ video {
 .mx-10{
   margin-left: 2.5rem;
   margin-right: 2.5rem;
+}
+
+.mx-32{
+  margin-left: 8rem;
+  margin-right: 8rem;
 }
 
 .mb-2{
@@ -863,6 +872,10 @@ video {
 
 .h-full{
   height: 100%;
+}
+
+.h-12{
+  height: 3rem;
 }
 
 .w-1\/2{
