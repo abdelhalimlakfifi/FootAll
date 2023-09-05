@@ -202,9 +202,82 @@ const teamShort = [
   'Monza',
 ];
 
+function getPosition(position) {
+  if (position === 'Goalkeeper') {
+    return 'GK';
+  }
+  if (position === 'Defence') {
+    return 'D';
+  }
+  if (position === 'Midfield') {
+    return 'M';
+  }
+  if (position === 'Offence') {
+    return 'F';
+  }
+}
+
 function getPlayers(shortName) {
-  console.log(currentTeam[shortName].squad);
-  return currentTeam[shortName].squad;
+  let gkCount = 0,
+    defCount = 0,
+    cmCount = 0,
+    forwardCount = 0;
+  let team = [];
+  let bench = [];
+
+  currentTeam[shortName].squad.forEach((player) => {
+    if (gkCount < 1) {
+      if (player.position === 'Goalkeeper') {
+        team.push(player);
+        gkCount++;
+      }
+    }
+    if (gkCount === 1) {
+      if (player.position === 'Goalkeeper') {
+        bench.push(player);
+        gkCount++;
+      }
+    }
+    if (defCount < 4) {
+      if (player.position === 'Defence') {
+        team.push(player);
+        defCount++;
+      }
+    }
+    if (defCount < 6 && defCount >= 4) {
+      if (player.position === 'Defence') {
+        bench.push(player);
+        defCount++;
+      }
+    }
+    if (cmCount < 4) {
+      if (player.position === 'Midfield') {
+        team.push(player);
+        cmCount++;
+      }
+    }
+    if (cmCount < 6 && cmCount >= 4) {
+      if (player.position === 'Midfield') {
+        bench.push(player);
+        cmCount++;
+      }
+    }
+    if (forwardCount < 2) {
+      if (player.position === 'Offence') {
+        team.push(player);
+        forwardCount++;
+      }
+    }
+    if (forwardCount >= 2 && forwardCount < 4) {
+      if (player.position === 'Offence') {
+        bench.push(player);
+        forwardCount++;
+      }
+    }
+  });
+  console.log(team);
+  console.log(bench);
+  return [team, bench];
 }
 
 let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
@@ -254,7 +327,6 @@ const nextMonth = () => {
   now.setDate(now.getDate() + 160);
   return now.toISOString().split('T')[0];
 };
-
 const now = new Date().toISOString().split('T')[0];
 
 function getMatch(str) {
@@ -383,7 +455,8 @@ async function fetchMatch(id) {
 
     let date = new Date(match.utcDate);
     let playHour = date.toTimeString().split(' ')[0];
-
+    console.log(currentTeam[match.homeTeam.shortName]);
+    console.log(currentTeam[match.awayTeam.shortName]);
     //GET PLAYERS
     document.getElementById('teamOneName').innerHTML = match.homeTeam.name;
     document.getElementById('teamTwoName').innerHTML = match.awayTeam.name;
@@ -391,26 +464,56 @@ async function fetchMatch(id) {
       currentTeam[match.homeTeam.shortName].coach.name;
     document.getElementById('teamTwoManager').innerHTML =
       currentTeam[match.awayTeam.shortName].coach.name;
+    //BENCH
+    document.getElementById('teamOneNameSub').innerHTML = 'Team 1';
+    document.getElementById('teamTwoNameSub').innerHTML = 'Team 2';
 
-    let teamOneContainer = document.getElementById('team_1_lineUp');
-    let teamTwoContainer = document.getElementById('team_2_lineUp');
+    document.getElementById('teamOneNameSub').innerHTML = 'Team 1';
+    document.getElementById('teamTwoNameSub').innerHTML = 'Team 2';
 
-    getPlayers(match.homeTeam.shortName).forEach((el) => {
+    getPlayers(match.homeTeam.shortName)[1].forEach((el) => {
       let newPlayer = document.createElement('div');
       newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
       newPlayer.innerHTML += `<p class="text-sm">
-                                <span class="text-[#096A00] font-bold">${el.position}</span>
+                                    <span class="text-[#096A00] font-bold">${el.position}</span>
+                                    <span class="font-[500]">${el.name}</span>
+                                </p>`;
+      document.getElementById('team_1_sub').appendChild(newPlayer);
+    });
+
+    getPlayers(match.awayTeam.shortName)[1].forEach((el) => {
+      let newPlayer = document.createElement('div');
+      newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
+      newPlayer.innerHTML += `<p class="text-sm ">
+                                    <span class="font-[500]">${el.name}</span>
+                                    <span class="text-[#096A00] font-bold">${el.position}</span>
+                                </p>`;
+      document.getElementById('team_2_sub').appendChild(newPlayer);
+    });
+    //BENCH
+    let teamOneContainer = document.getElementById('team_1_lineUp');
+    let teamTwoContainer = document.getElementById('team_2_lineUp');
+    console.log(getPlayers(match.homeTeam.shortName));
+    getPlayers(match.homeTeam.shortName)[0].forEach((el) => {
+      let newPlayer = document.createElement('div');
+      newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
+      newPlayer.innerHTML += `<p class="text-sm">
+                                <span class="text-[#096A00] font-bold">${getPosition(
+                                  el.position
+                                )}</span>
                                 <span class="font-[500]">${el.name}</span>
                             </p>`;
       document.getElementById('team_1_lineUp').appendChild(newPlayer);
     });
 
-    getPlayers(match.awayTeam.shortName).forEach((el) => {
+    getPlayers(match.awayTeam.shortName)[0].forEach((el) => {
       let newPlayer = document.createElement('div');
       newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
       newPlayer.innerHTML += `<p class="text-sm ">
                                 <span class="font-[500]">${el.name}</span>
-                                <span class="text-[#096A00] font-bold">${el.position}</span>
+                                <span class="text-[#096A00] font-bold">${getPosition(
+                                  el.position
+                                )}</span>
                             </p>`;
       document.getElementById('team_2_lineUp').appendChild(newPlayer);
     });

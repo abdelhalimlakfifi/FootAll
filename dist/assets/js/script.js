@@ -44,65 +44,77 @@ match.innerHTML = `
     container.appendChild(match);
 */
 // filling leagues tables
+let win = `<svg height="100" width="100">
+<circle cx="50" cy="50" r="6" stroke="black" stroke-width="1" fill="green" />
+
+</svg> `;
+
+let lose = `<svg height="100" width="100">
+<circle cx="50" cy="50" r="6" stroke="black" stroke-width="1" fill="red" />
+
+</svg> `;
+let draw = `<svg height="100" width="100">
+<circle cx="50" cy="50" r="6" stroke="black" stroke-width="1" fill="grey" />
+
+</svg> `;
 
 //import { Tab } from 'bootstrap';
-
+let baseurl = 'http://localhost:3000/';
 const leagues = document.querySelectorAll('#myTab>li>button');
 let l = [5, 4, 3, 2, 1, 2, 3, 4, 5];
+const divisions = ['PL', 'PD', 'SA', 'BL1', 'FL1'];
+
+async function fetchTeams(url) {
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-Auth-Token': '8e1f84010b5348ccb90fa14f6070bbde',
+      'Access-Control-Allow-Origin': '*',
+    },
+  };
+  const response = await fetch(url, options);
+  const result = await response.json();
+  return result;
+}
 const tables = document.querySelectorAll('#scrolsLeague>div');
 leagues.forEach((league) => {
-    league.addEventListener('click', () => {
-        var i;
-        var leagueId = league.id.slice(0, 2);
-        tables.forEach((table, index) => {
-            if (leagueId === table.id) {
-                i = index;
-            }
-        });
-        l.forEach((x, index) => {
-            const team = document.createElement('ul');
-            team.classList.add('flex');
-            team.classList.add('py-4');
-            team.classList.add('px-8');
-            team.classList.add('font-medium');
-            team.classList.add('items-center');
-            team.classList.add('justify-between');
-            team.innerHTML = `<li>${index + 1}</li>
-        <li class="flex items-center justify-start gap-5 w-52"><img
-                class="object-contain h-10" src="">
-        </li>
-        <li>${x}</li>
-        <li>3</li>
-        <li>1</li>
-        <li>45</li>
-        <li class="flex w-32 justify-evenly"><svg style="fill: green;"
-                xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                <path
-                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-            </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 512 512">
-                <path
-                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-            </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 512 512">
-                <path
-                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-            </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 512 512">
-                <path
-                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-            </svg> <svg style="fill: green;" xmlns="http://www.w3.org/2000/svg" height="1em"
-                viewBox="0 0 512 512">
-                <path
-                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-            </svg>
-        </li>`;
-            tables[i].appendChild(team);
-        });
+  league.addEventListener('click', (e) => {
+    var i;
+    console.log(e.currentTarget.dataset.id);
+    var leagueId = league.id.split('-')[0];
+    tables.forEach((table, index) => {
+      if (leagueId === table.id) {
+        i = index;
+      }
     });
+
+    fetchTeams(baseurl + 'competitions/' + leagueId + '/standings').then(
+      (result) => {
+        console.log(JSON.parse(result));
+        JSON.parse(result).standings[0].table.forEach((x, index) => {
+          const team = document.createElement('ul');
+          team.classList.add('flex');
+          team.classList.add('py-4');
+          team.classList.add('px-8');
+          team.classList.add('font-medium');
+          team.classList.add('items-center');
+          team.classList.add('justify-between');
+          team.innerHTML = `<li>${index + 1}</li>
+          <li class="flex items-center justify-start gap-5 w-52"><img
+                  class="object-contain h-10" src="${x.team.crest} "> ${
+            x.team.shortName
+          }
+          </li>
+          <li>${x.won}</li>
+          <li>${x.draw}</li>
+          <li>${x.lost}</li>
+          <li>${x.points}</li>
+          <li class="flex w-32 justify-evenly">
+          ${x.goalsFor} | ${x.goalsAgainst} | ${x.goalDifference}
+          </li>`;
+          tables[i].appendChild(team);
+        });
+      }
+    );
+  });
 });
-/*
-   const tab = document.querySelector('#L1');
-   console.log(tab);
-   tab.innerHTML('aaezaeaz');
-   tab.appendChild(team); */
