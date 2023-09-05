@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         article.classList.add('mx-auto');
         article.innerHTML = `<div
         class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-        <a href="#">
+        <a href="./newDetails/details.html?id=${blogs[i].id}">
         <img class="rounded-t-lg h-96 w-full object-cover" src="./assets/img/${blogs[i].img}" alt="" />
     </a>
     <div class="p-5">
