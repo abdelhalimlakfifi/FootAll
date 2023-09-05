@@ -77,6 +77,38 @@ async function fetchTeams(url) {
   return result;
 }
 const tables = document.querySelectorAll('#scrolsLeague>div');
+fetchTeams(baseurl + 'competitions/SA/standings').then((result) => {
+  tables.forEach((table, index) => {
+    if ('SA' === table.id) {
+      i = index;
+    }
+  });
+  console.log(JSON.parse(result));
+  JSON.parse(result).standings[0].table.forEach((x, index) => {
+    const team = document.createElement('ul');
+    team.classList.add('flex');
+    team.classList.add('py-4');
+    team.classList.add('px-8');
+    team.classList.add('font-medium');
+    team.classList.add('items-center');
+    team.classList.add('justify-between');
+    team.innerHTML = `<li>${index + 1}</li>
+        <li class="flex items-center justify-start gap-5 w-52"><img
+                class="object-contain h-10" src="${x.team.crest} "> ${
+      x.team.shortName
+    }
+        </li>
+        <li>${x.won}</li>
+        <li>${x.draw}</li>
+        <li>${x.lost}</li>
+        <li>${x.points}</li>
+        <li class="flex w-32 justify-evenly">
+        ${x.goalsFor} | ${x.goalsAgainst} | ${x.goalDifference}
+        </li>`;
+    tables[i].appendChild(team);
+  });
+});
+
 leagues.forEach((league) => {
   league.addEventListener('click', (e) => {
     var i;
