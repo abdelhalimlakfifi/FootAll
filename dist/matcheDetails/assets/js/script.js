@@ -232,8 +232,8 @@ function getPlayers(shortName) {
         gkCount++;
       }
     }
-    if (gkCount === 1) {
-      if (player.position === 'Goalkeeper') {
+    if (gkCount == 1) {
+      if (player.position === 'Goalkeeper' && !team.includes(player)) {
         bench.push(player);
         gkCount++;
       }
@@ -244,7 +244,7 @@ function getPlayers(shortName) {
         defCount++;
       }
     }
-    if (defCount < 6 && defCount >= 4) {
+    if (defCount < 6 && defCount >= 4 && !team.includes(player)) {
       if (player.position === 'Defence') {
         bench.push(player);
         defCount++;
@@ -256,7 +256,7 @@ function getPlayers(shortName) {
         cmCount++;
       }
     }
-    if (cmCount < 6 && cmCount >= 4) {
+    if (cmCount < 6 && cmCount >= 4 && !team.includes(player)) {
       if (player.position === 'Midfield') {
         bench.push(player);
         cmCount++;
@@ -268,21 +268,21 @@ function getPlayers(shortName) {
         forwardCount++;
       }
     }
-    if (forwardCount >= 2 && forwardCount < 4) {
+    if (forwardCount >= 2 && forwardCount < 4 && !team.includes(player)) {
       if (player.position === 'Offence') {
         bench.push(player);
         forwardCount++;
       }
     }
   });
-  console.log(team);
-  console.log(bench);
+
   return [team, bench];
 }
 
 let slugTeam = decodeURI(window.location.href.split('?team=')[1]);
 
 const currentTeam = focusedTeam[0];
+
 let baseurl = 'http://localhost:3000/';
 const divisions = ['PL', 'PD', 'SA', 'BL1', 'FL1'];
 const urlTeams = [];
@@ -455,8 +455,6 @@ async function fetchMatch(id) {
 
     let date = new Date(match.utcDate);
     let playHour = date.toTimeString().split(' ')[0];
-    console.log(currentTeam[match.homeTeam.shortName]);
-    console.log(currentTeam[match.awayTeam.shortName]);
     //GET PLAYERS
     document.getElementById('teamOneName').innerHTML = match.homeTeam.name;
     document.getElementById('teamTwoName').innerHTML = match.awayTeam.name;
@@ -465,17 +463,19 @@ async function fetchMatch(id) {
     document.getElementById('teamTwoManager').innerHTML =
       currentTeam[match.awayTeam.shortName].coach.name;
     //BENCH
-    document.getElementById('teamOneNameSub').innerHTML = 'Team 1';
-    document.getElementById('teamTwoNameSub').innerHTML = 'Team 2';
 
     document.getElementById('teamOneNameSub').innerHTML = 'Team 1';
     document.getElementById('teamTwoNameSub').innerHTML = 'Team 2';
+    document.getElementById('teamOneNameSub').innerHTML = match.homeTeam.name;
+    document.getElementById('teamTwoNameSub').innerHTML = match.awayTeam.name;
 
     getPlayers(match.homeTeam.shortName)[1].forEach((el) => {
       let newPlayer = document.createElement('div');
       newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
       newPlayer.innerHTML += `<p class="text-sm">
-                                    <span class="text-[#096A00] font-bold">${el.position}</span>
+                                    <span class="text-[#096A00] font-bold">${getPosition(
+                                      el.position
+                                    )}</span>
                                     <span class="font-[500]">${el.name}</span>
                                 </p>`;
       document.getElementById('team_1_sub').appendChild(newPlayer);
@@ -486,14 +486,15 @@ async function fetchMatch(id) {
       newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
       newPlayer.innerHTML += `<p class="text-sm ">
                                     <span class="font-[500]">${el.name}</span>
-                                    <span class="text-[#096A00] font-bold">${el.position}</span>
+                                    <span class="text-[#096A00] font-bold">${getPosition(
+                                      el.position
+                                    )}</span>
                                 </p>`;
       document.getElementById('team_2_sub').appendChild(newPlayer);
     });
     //BENCH
     let teamOneContainer = document.getElementById('team_1_lineUp');
     let teamTwoContainer = document.getElementById('team_2_lineUp');
-    console.log(getPlayers(match.homeTeam.shortName));
     getPlayers(match.homeTeam.shortName)[0].forEach((el) => {
       let newPlayer = document.createElement('div');
       newPlayer.style.margin = '0.5rem 2.5rem 0.5rem 2.5rem';
