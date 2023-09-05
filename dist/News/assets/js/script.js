@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         article.classList.add('justify-between');
         article.classList.add('items-start');
         article.classList.add('max-w-xl');
+        article.classList.add('mx-auto');
         article.innerHTML = `<div
         class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
         <a href="#">
