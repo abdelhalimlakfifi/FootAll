@@ -590,6 +590,8 @@ fetchMatch(currentTeam[focused].id)
 
 window.addEventListener('load', function () {
     if(!isError){
-        document.getElementById('loader').style.display = "none";
+
+        setTimeout(()=>{document.getElementById('loader').style.display = "none";},2000);
+        
     }
 })

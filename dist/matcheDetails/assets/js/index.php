@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: *");
 $options = array(
   'http' => array(
     'method' => "GET",
-    'header' => "X-Auth-Token: 8e1f84010b5348ccb90fa14f6070bbde"
+    'header' => "X-Auth-Token: ac803cf8d9854ffbbeefef018030ce08"
   )
 );
 
